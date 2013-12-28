@@ -1,17 +1,12 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     id="map-svg"
+     viewBox="0 0 950 620"
+     preserveAspectRatio="">
 
-<svg xmlns:svg="http://www.w3.org/2000/svg"
-	 xmlns="http://www.w3.org/2000/svg"
-	 xmlns:xlink="http://www.w3.org/1999/xlink"
-	 xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace"
-	 version="1.2" baseProfile="tiny"
-	 id="svg" x="0px" y="0px"
-	 viewBox="0 0 950 620" >
-
-	 <defs>
-	 	<link href="map.css" type="text/css" rel="stylesheet"
-                  xmlns="http://www.w3.org/1999/xhtml" />
-	 </defs>
+    <defs>
+        <link href="styles/map.css" type="text/css" rel="stylesheet" xmlns="http://www.w3.org/1999/xhtml" />
+    </defs>
 
 <path id="kalimantan" d="M781.68,324.4l-2.31,8.68l-12.53,4.23l-3.75-4.4l-1.82,0.5l3.4,13.12l5.09,0.57l6.79,2.57v2.57l3.11-0.57l4.53-6.27v-5.13l2.55-5.13l2.83,0.57l-3.4-7.13l-0.52-4.59L781.68,324.4L781.68,324.4z"></path>
 <path id="papua new guinea" d="M852.76,348.29l-0.37,24.44l3.52-0.19l4.63-5.41l3.89,0.19l2.5,2.24l0.83,6.9l7.96,4.2l2.04-0.75v-2.52l-6.39-5.32l-3.15-7.28l2.5-1.21l-1.85-4.01l-3.7-0.09l-0.93-4.29l-9.81-6.62L852.76,348.29L852.76,348.29z"></path>
