@@ -1,9 +1,10 @@
+// noinspection ALL
 #map-svg {
-
-	width: 100%;
-	height: 100%;
-
 	path {
 		fill: #555;
+
+		&.active {
+			fill: #bbb;
+		}
 	}
 }

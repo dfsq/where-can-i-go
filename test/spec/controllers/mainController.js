@@ -17,7 +17,7 @@ describe('Controller: mainController', function () {
 	}));
 
 	it('should se title to "Map page"', function () {
-		expect(scope.title).toBe("Map page");
+		expect(scope.title).toBe('Map page');
 	});
 
 });
