@@ -6,5 +6,17 @@
 		&.active {
 			fill: #bbb;
 		}
+
+		&.selected {
+			fill: coral;
+		}
+
+		&.visa-free {
+			fill: #68AF46;
+		}
+
+		&.visa-arrive {
+			fill: #97af9f;
+		}
 	}
 }
