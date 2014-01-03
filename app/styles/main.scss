@@ -30,3 +30,13 @@ html, body, #map-object {
 	font-size: 13px;
 	text-transform: capitalize;
 }
+
+noscript {
+	color: #EEE;
+	h4 {
+		position: absolute;
+		top: 20px;
+		text-align: center;
+		width: 100%;
+	}
+}
