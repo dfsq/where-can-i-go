@@ -1,6 +1,6 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
-@import "../bower_components/sass-bootstrap/lib/bootstrap";
+@import "bootstrap-components";
 
 
 html, body, #map-object {
@@ -11,26 +11,6 @@ html, body, #map-object {
 	background-color: #222;
 }
 
-#map-object {
-	width: 100%;
-	height: 100%;
-}
-
-#map-tooltip {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: -20px 0 0 5px;
-	display: none;
-	z-index: 100;
-	padding: 2px 7px;
-	border: 1px #888 solid;
-	border-radius: 5px;
-	background: #EFEFEF;
-	font-size: 13px;
-	text-transform: capitalize;
-}
-
 noscript {
 	color: #EEE;
 	h4 {
@@ -38,5 +18,41 @@ noscript {
 		top: 20px;
 		text-align: center;
 		width: 100%;
+	}
+}
+
+#map-object {
+	width: 100%;
+	height: 100%;
+}
+
+/* Map tooltips */
+.tooltip {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 100;
+	padding: 10px;
+	border: 1px #888 solid;
+	border-radius: 5px;
+	background: #EFEFEF;
+	font-size: 13px;
+
+	&.show {
+		display: block;
+	}
+
+	&.country-tooltip {
+		margin: -20px 0 0 5px;
+		padding: 2px 7px;
+		text-transform: capitalize;
+	}
+
+	&.info-tooltip {
+		margin: 5px;
+		background-color: rgba(255, 255, 255, .5);
+		height: 200px;
+		color: #222;
 	}
 }

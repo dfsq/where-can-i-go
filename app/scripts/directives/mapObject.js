@@ -2,38 +2,6 @@
 
 app.directive('mapObject', ['countryService', function(countryService) {
 
-	function Tooltip() {
-		//
-	}
-
-	Tooltip.prototype = {
-
-		create: function() {
-			this._element = document.createElement('div');
-			this._element.id = 'map-tooltip';
-			document.body.appendChild(this._element);
-			return this;
-		},
-
-		setContent: function(content) {
-			this._element.innerHTML = content;
-			return this;
-		},
-
-		show: function() {
-			this._element.classList.add('show');
-		},
-
-		hide: function() {
-			this._element.classList.remove('show');
-		},
-
-		setPosition: function(position) {
-			this._element.style.left = position.left + 'px';
-			this._element.style.top  = position.top + 'px';
-		}
-	};
-
 	return {
 		link: function(scope, element) {
 
@@ -43,7 +11,8 @@ app.directive('mapObject', ['countryService', function(countryService) {
 					selected: mapDoc.getElementsByClassName('selected'),
 					active:   mapDoc.getElementsByClassName('active')
 				},
-				tooltip = new Tooltip().create();
+				tooltip = new MapTooltip('country').create(),
+				infoBox = new MapTooltip('info').create();
 
 			mapDoc.addEventListener('mouseover', function(e) {
 				if (filterTarget(e)) {
@@ -63,7 +32,7 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				if (filterTarget(e)) {
 					setSelectedPath(e);
 				}
-			});
+			}, false);
 
 			mapDoc.addEventListener('mousemove', function(e) {
 				if (filterTarget(e)) {
@@ -106,11 +75,16 @@ app.directive('mapObject', ['countryService', function(countryService) {
 			}
 
 			function setSelectedPath(e) {
+
 				clearPath('selected');
 				e.target.classList.add('selected');
 
 				// TODO: clicked country name save in data-name
 				var country = e.target.id;
+
+				// Show information box (tooltip)
+				infoBox.setContent('Citizens of ' + country + ' may go to..');
+				infoBox.show();
 
 				countryService.getList(country).success(function(data) {
 					highlight(data[country] || []);
