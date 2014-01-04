@@ -17,7 +17,7 @@ app.directive('mapObject', ['countryService', function(countryService) {
 			mapDoc.addEventListener('mouseover', function(e) {
 				if (filterTarget(e)) {
 					setActivePath(e.target);
-					tooltip.setContent(e.target.id).show();
+					tooltip.setContent(e.target.dataset.name).show();
 				}
 			}, false);
 
@@ -80,7 +80,7 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				e.target.classList.add('selected');
 
 				// TODO: clicked country name save in data-name
-				var country = e.target.id;
+				var country = e.target.dataset.name;
 
 				// Show information box (tooltip)
 				infoBox.setContent('Citizens of ' + country + ' may go to..');
