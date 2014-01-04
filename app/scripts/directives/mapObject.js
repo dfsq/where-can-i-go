@@ -80,14 +80,15 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				e.target.classList.add('selected');
 
 				// TODO: clicked country name save in data-name
-				var country = e.target.dataset.name;
+				var country = e.target.dataset.name,
+					countryId = e.target.id;
 
 				// Show information box (tooltip)
 				infoBox.setContent('Citizens of ' + country + ' may go to..');
 				infoBox.show();
 
-				countryService.getList(country).success(function(data) {
-					highlight(data[country] || []);
+				countryService.getList(countryId).success(function(data) {
+					highlight(data[countryId] || []);
 				});
 			}
 		}
