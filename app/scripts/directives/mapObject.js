@@ -60,14 +60,14 @@ app.directive('mapObject', ['countryService', function(countryService) {
 			}
 
 			function highlight(list) {
-				angular.forEach(list['fr'], function(name) {
-					var path = mapDoc.getElementById(name);
+				angular.forEach(list['vf'], function(country) {
+					var path = mapDoc.getElementById(country.name.toLowerCase()); // todo: testing...
 					if (path) {
 						path.classList.add('visa-free');
 					}
 				});
-				angular.forEach(list['ar'], function(name) {
-					var path = mapDoc.getElementById(name);
+				angular.forEach(list['va'], function(country) {
+					var path = mapDoc.getElementById(country.name);
 					if (path) {
 						path.classList.add('visa-arrive');
 					}
@@ -83,13 +83,19 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				var country = e.target.dataset.name,
 					countryId = e.target.id;
 
-				// Show information box (tooltip)
-				infoBox.setContent('Citizens of ' + country + ' may go to..');
-				infoBox.show();
-
-				countryService.getList(countryId).success(function(data) {
-					highlight(data[countryId] || []);
+				countryService.getList(country).success(function(data) {
+					highlight(data || {});
+					showInfo(country, data['vf'] || {});
 				});
+			}
+
+			function showInfo(country, visaFree) {
+				var html = '<h4>Citizens of ' + country + ' may go to..</h4>';
+				html += visaFree.map(function(el) {
+					return el.name;
+				}).join('<br>');
+				infoBox.setContent(html);
+				infoBox.show();
 			}
 		}
 	};
