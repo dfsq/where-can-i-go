@@ -207,7 +207,7 @@
 	<option value="TJ">Tajikistan</option>
 	<option value="TZ">Tanzania</option>
 	<option value="TH">Thailand</option>
-	<option value="TL">Timor Leste</option>
+	<option value="TL">Timor</option>
 	<option value="TG">Togo</option>
 	<option value="TO">Tonga</option>
 	<option value="TT">Trinidad &amp; Tobago</option>
@@ -273,7 +273,6 @@
 		mapDoc.addEventListener('click', function(e) {
 			if (e.target.nodeName === 'path') {
 				setActivePath(e.target.dataset.name);
-				log.innerText = e.target.dataset.name;
 			}
 		}, false);
 
@@ -286,6 +285,7 @@
 
 		function setActivePath(pathName) {
 			clearPath('active');
+			log.innerText = pathName;
 			path.filter(function(el) {
 				return el.dataset.name === pathName;
 			})
