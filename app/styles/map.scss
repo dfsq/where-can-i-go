@@ -1,5 +1,5 @@
 // noinspection ALL
-#map-svg {
+svg {
 	path {
 		fill: #555;
 
@@ -17,6 +17,10 @@
 
 		&.visa-arrive {
 			fill: #97af9f;
+		}
+
+		&.remove {
+			fill: red;
 		}
 	}
 }

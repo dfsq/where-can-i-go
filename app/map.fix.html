@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
@@ -62,7 +63,7 @@
 	<option value="DK">Denmark</option>
 	<option value="DJ">Djibouti</option>
 	<option value="DM">Dominica</option>
-	<option value="DO">Dominican Rep.</option>
+	<option value="DO">Dominican Republic</option>
 	<option value="EC">Ecuador</option>
 	<option value="EG">Egypt</option>
 	<option value="SV">El Salvador</option>
@@ -232,26 +233,67 @@
 	<option value="ZM">Zambia</option>
 	<option value="ZW">Zimbabwe</option>
 </select>
+<span id="log" style="color: #EEE; margin-left: 5px;"></span>
 
 <!-- SVG here -->
+<object id="map-object" data="map.svg" onload="loaded()" type="image/svg+xml"></object>
 
 <script>
 
-	var c = [].slice.call(countries.options).map(function (el) {
-		return el.label.replace(/\s+/g, '_').toLowerCase()
-	});
+	function loaded() {
 
-	var patha = [].slice.call(document.getElementsByTagName('path'));
+		var svg = document.getElementById('map-object'),
+			mapDoc = svg.contentDocument,
+			path = [].slice.call(mapDoc.getElementsByTagName('path')),
+			select = document.getElementById('countries'),
+			countries = [].slice.call(select.options).map(function (el) {
+				return el.label.replace(/\s+/g, '_').toLowerCase();
+			}),
+			pathList = {
+				active: mapDoc.getElementsByClassName('active')
+			},
+			log = document.getElementById('log');
 
-	patha.forEach(function (p) {
-		p.id = p.dataset.name.toLowerCase().replace(/[^a-z]+/g, '_');
-		p.classList.remove('remove')
-		var name = p.id.toLowerCase();
-		if (c.indexOf(name) === -1) {
-			p.classList.add('remove')
-			p.title = name;
+		path.forEach(function(p) {
+			p.id = p.dataset.name.toLowerCase().replace(/[^a-z]+/g, '_');
+			p.classList.remove('remove');
+
+			var name = p.id.toLowerCase();
+			if (countries.indexOf(name) === -1) {
+				p.classList.add('remove');
+				p.title = name;
+			}
+		});
+
+		select.onchange = function() {
+			var name = this.options[this.selectedIndex].innerText;
+			setActivePath(name);
+		};
+
+		mapDoc.addEventListener('click', function(e) {
+			if (e.target.nodeName === 'path') {
+				setActivePath(e.target.dataset.name);
+				log.innerText = e.target.dataset.name;
+			}
+		}, false);
+
+		function clearPath(className) {
+			var list = pathList[className];
+			while (list.length) {
+				list[list.length - 1].classList.remove(className);
+			}
 		}
-	});
+
+		function setActivePath(pathName) {
+			clearPath('active');
+			path.filter(function(el) {
+				return el.dataset.name === pathName;
+			})
+			.forEach(function(el) {
+				el.classList.add('active');
+			});
+		}
+	}
 
 </script>
 
