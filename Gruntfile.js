@@ -208,76 +208,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// The following *-min tasks produce minified files in the dist folder
-		imagemin: {
-			dist: {
-				files: [
-					{
-						expand: true,
-						cwd: '<%= yeoman.app %>/images',
-						src: '{,*/}*.{png,jpg,jpeg,gif}',
-						dest: '<%= yeoman.dist %>/images'
-					}
-				]
-			}
-		},
-		svgmin: {
-			dist: {
-				files: [
-					{
-						expand: true,
-						cwd: '<%= yeoman.app %>/images',
-						src: '{,*/}*.svg',
-						dest: '<%= yeoman.dist %>/images'
-					}
-				]
-			}
-		},
-		htmlmin: {
-			dist: {
-				options: {
-					// Optional configurations that you can uncomment to use
-					// removeCommentsFromCDATA: true,
-					// collapseBooleanAttributes: true,
-					// removeAttributeQuotes: true,
-					// removeRedundantAttributes: true,
-					// useShortDoctype: true,
-					// removeEmptyAttributes: true,
-					// removeOptionalTags: true*/
-				},
-				files: [
-					{
-						expand: true,
-						cwd: '<%= yeoman.app %>',
-						src: ['*.html', 'views/*.html'],
-						dest: '<%= yeoman.dist %>'
-					}
-				]
-			}
-		},
-
-		// Allow the use of non-minsafe AngularJS files. Automatically makes it
-		// minsafe compatible so Uglify does not destroy the ng references
-		ngmin: {
-			dist: {
-				files: [
-					{
-						expand: true,
-						cwd: '.tmp/concat/scripts',
-						src: '*.js',
-						dest: '.tmp/concat/scripts'
-					}
-				]
-			}
-		},
-
-		// Replace Google CDN references
-		cdnify: {
-			dist: {
-				html: ['<%= yeoman.dist %>/*.html']
-			}
-		},
-
 		// Copies remaining files to places other tasks can use
 		copy: {
 			dist: {
@@ -332,32 +262,6 @@ module.exports = function (grunt) {
 			]
 		},
 
-		// By default, your `index.html`'s <!-- Usemin block --> will take care of
-		// minification. These next options are pre-configured if you do not wish
-		// to use the Usemin blocks.
-		// cssmin: {
-		//   dist: {
-		//     files: {
-		//       '<%= yeoman.dist %>/styles/main.css': [
-		//         '.tmp/styles/{,*/}*.css',
-		//         '<%= yeoman.app %>/styles/{,*/}*.css'
-		//       ]
-		//     }
-		//   }
-		// },
-		// uglify: {
-		//   dist: {
-		//     files: {
-		//       '<%= yeoman.dist %>/scripts/scripts.js': [
-		//         '<%= yeoman.dist %>/scripts/scripts.js'
-		//       ]
-		//     }
-		//   }
-		// },
-		// concat: {
-		//   dist: {}
-		// },
-
 		// Test settings
 		karma: {
 			unit: {
@@ -376,7 +280,6 @@ module.exports = function (grunt) {
 		grunt.task.run([
 			'clean:server',
 			'concurrent:server',
-//			'autoprefixer',
 			'connect:livereload',
 			'watch'
 		]);
@@ -388,10 +291,9 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('test', [
-//		'clean:server',
-//		'concurrent:test',
-//		'autoprefixer',
-//		'connect:test',
+		'clean:server',
+		'concurrent:test',
+		'connect:test',
 		'karma'
 	]);
 
@@ -399,11 +301,9 @@ module.exports = function (grunt) {
 		'clean:dist',
 		'useminPrepare',
 		'concurrent:dist',
-		'autoprefixer',
+//		'autoprefixer',
 		'concat',
-		'ngmin',
 		'copy:dist',
-		'cdnify',
 		'cssmin',
 		'uglify',
 		'rev',
@@ -411,7 +311,7 @@ module.exports = function (grunt) {
 	]);
 
 	grunt.registerTask('default', [
-//    'newer:jshint',
+    	'newer:jshint',
 		'test',
 		'build'
 	]);
