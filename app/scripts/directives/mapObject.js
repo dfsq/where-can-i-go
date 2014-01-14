@@ -2,6 +2,8 @@
 
 app.directive('mapObject', ['countryService', function(countryService) {
 
+	window.country = countryService;
+
 	return {
 		link: function(scope, element) {
 
@@ -83,7 +85,7 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				var country = e.target.dataset.name,
 					countryId = e.target.id;
 
-				countryService.getList(country).success(function(data) {
+				countryService.get({name: country}).success(function(data) {
 					highlight(data || {});
 					showInfo(country, data['vf'] || {});
 				});

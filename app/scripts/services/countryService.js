@@ -1,14 +1,9 @@
+'use strict';
+
 app.factory('countryService', ['$http', function($http) {
 
-	/*
-	xpath wikipedia
-	var xpath = '/*//*[@id="mw-content-text"]/table[1]/tbody/tr/td[text()="Visa on arrival"]/preceding-sibling::td[1]/a';
-	var visaFree = $x(xpath);
-
-	var map = [].slice.call(visaFree).map(function(el) {
-		return el.innerText;
-	})
-	*/
+	var collectionUrl = 'https://api.mongolab.com/api/1/databases/wherecanigo/collections/countries',
+		apiKey = 'IXGMQbrk_gGDz-BsX-CCcYAsfEEcsuI3';
 
 	return {
 		/**
@@ -16,12 +11,21 @@ app.factory('countryService', ['$http', function($http) {
 		 * @param country
 		 * @returns {angular.promise}
 		 */
-		getList: function(country) {
-			return $http.get('https://api.mongolab.com/api/1/databases/wherecanigo/collections/countries', {
+		get: function(query) {
+			return $http.get(collectionUrl, {
 				params: {
-					apiKey: 'IXGMQbrk_gGDz-BsX-CCcYAsfEEcsuI3',
+					apiKey: apiKey,
 					fo: true,
-					q: {name: country}
+					q: query
+				}
+			});
+		},
+
+		query: function(query) {
+			return $http.get(collectionUrl, {
+				params: {
+					apiKey: apiKey,
+					q: query || {}
 				}
 			});
 		}
