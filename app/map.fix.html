@@ -42,7 +42,7 @@
 	<option value="KH">Cambodia</option>
 	<option value="CM">Cameroon</option>
 	<option value="CA">Canada</option>
-	<option value="CV">Cape Verde Islands</option>
+	<option value="CV">Cape Verde</option>
 	<option value="KY">Cayman Islands</option>
 	<option value="CF">Central African Republic</option>
 	<option value="TD">Chad</option>
@@ -55,7 +55,7 @@
 	<option value="CD">Democratic Republic of the Congo</option>
 	<option value="CK">Cook Islands</option>
 	<option value="CR">Costa Rica</option>
-	<option value="CI">Cote d Ivoire</option>
+	<option value="CI">Cote d'Ivoire</option>
 	<option value="HR">Croatia</option>
 	<option value="CU">Cuba</option>
 	<option value="CY">Cyprus</option>
@@ -247,7 +247,7 @@
 			path = [].slice.call(mapDoc.getElementsByTagName('path')),
 			select = document.getElementById('countries'),
 			countries = [].slice.call(select.options).map(function (el) {
-				return el.label.replace(/\s+/g, '_').toLowerCase();
+				return el.label;
 			}),
 			pathList = {
 				active: mapDoc.getElementsByClassName('active')
@@ -255,13 +255,9 @@
 			log = document.getElementById('log');
 
 		path.forEach(function(p) {
-			p.id = p.dataset.name.toLowerCase().replace(/[^a-z]+/g, '_');
 			p.classList.remove('remove');
-
-			var name = p.id.toLowerCase();
-			if (countries.indexOf(name) === -1) {
+			if (countries.indexOf(p.dataset.name) === -1) {
 				p.classList.add('remove');
-				p.title = name;
 			}
 		});
 

@@ -63,6 +63,7 @@ app.directive('mapObject', ['countryService', function(countryService) {
 
 			function highlight(list) {
 				angular.forEach(list['vf'], function(country) {
+					debugger
 					var path = mapDoc.getElementById(country.name.toLowerCase()); // todo: testing...
 					if (path) {
 						path.classList.add('visa-free');

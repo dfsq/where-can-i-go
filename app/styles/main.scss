@@ -51,6 +51,8 @@ noscript {
 	}
 
 	&.info-tooltip {
+		top: auto;
+		bottom: 0;
 		margin: 5px;
 		background-color: rgba(255, 255, 255, .5);
 		height: 200px;
