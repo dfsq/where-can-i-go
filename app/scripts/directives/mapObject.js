@@ -63,7 +63,6 @@ app.directive('mapObject', ['countryService', function(countryService) {
 
 			function highlight(list) {
 				angular.forEach(list['vf'], function(country) {
-					debugger
 					var path = mapDoc.getElementById(country.name.toLowerCase()); // todo: testing...
 					if (path) {
 						path.classList.add('visa-free');
@@ -86,6 +85,10 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				var country = e.target.dataset.name,
 					countryId = e.target.id;
 
+				// Show loading animation
+				infoBox.show();
+				infoBox.toggleLoading();
+
 				countryService.get({name: country}).success(function(data) {
 					highlight(data || {});
 					showInfo(country, data['vf'] || {});
@@ -93,12 +96,14 @@ app.directive('mapObject', ['countryService', function(countryService) {
 			}
 
 			function showInfo(country, visaFree) {
+
+				infoBox.toggleLoading();
+
 				var html = '<h4>Citizens of ' + country + ' may go to..</h4>';
 				html += visaFree.map(function(el) {
 					return el.name;
 				}).join('<br>');
 				infoBox.setContent(html);
-				infoBox.show();
 			}
 		}
 	};

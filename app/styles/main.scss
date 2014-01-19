@@ -51,11 +51,33 @@ noscript {
 	}
 
 	&.info-tooltip {
-		top: auto;
+		display: block;
+		top: 0;
 		bottom: 0;
-		margin: 5px;
+		margin: 0;
+		border-radius: 0;
 		background-color: rgba(255, 255, 255, .5);
-		height: 200px;
 		color: #222;
+		left: -100%;
+		width: 300px;
+
+		-webkit-transition: left .4s ease;
+		transition: left .4s ease;
+
+		&.loading {
+			background-image: url(../images/loading.gif);
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+
+		&.show {
+			left: 0;
+		}
+
+		&.close {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+		}
 	}
 }

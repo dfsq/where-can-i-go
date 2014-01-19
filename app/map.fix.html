@@ -86,7 +86,6 @@
 	<option value="GH">Ghana</option>
 	<option value="GI">Gibraltar</option>
 	<option value="GR">Greece</option>
-	<option value="GL">Greenland</option>
 	<option value="GD">Grenada</option>
 	<option value="GU">Guam(Mariana Island)</option>
 	<option value="GT">Guatemala</option>
@@ -258,6 +257,18 @@
 			p.classList.remove('remove');
 			if (countries.indexOf(p.dataset.name) === -1) {
 				p.classList.add('remove');
+			}
+		});
+
+		console.log('Unknown countries:');
+		countries.forEach(function(name) {
+			var pathClone = path.slice(),
+				_path = pathClone.some(function(p) {
+					return p.dataset.name === name;
+				});
+
+			if (!_path) {
+				console.log(name);
 			}
 		});
 

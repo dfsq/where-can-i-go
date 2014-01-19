@@ -37,5 +37,9 @@ MapTooltip.prototype = {
 	setPosition: function(position) {
 		this._element.style.left = position.left + 'px';
 		this._element.style.top  = position.top + 'px';
+	},
+
+	toggleLoading: function() {
+		this._element.classList.toggle('loading');
 	}
 };
