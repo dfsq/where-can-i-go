@@ -12,32 +12,34 @@
 	<link rel="stylesheet" href="styles/main.css">
 	<!-- endbuild -->
 </head>
-<body ng-app="whereCanIGo">
+<body ng-app="whereCanIGo" ng-controller="mainController">
 
 <noscript>
 	<h4>Javascript is absolutely needed for this application!</h4>
 </noscript>
 
 <!--[if lt IE 9]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-	your browser</a> to improve your experience.</p>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- Add your site or application content here -->
+
+<div class="info-screen" ng-controller="infoContrller"></div>
 <object id="map-object" map-object data="map.svg" type="image/svg+xml"></object>
 
-<script src="bower_components/angular/angular.js"></script>
 
+
+<!-- Scripts -->
 <!-- build:js scripts/modules.js -->
+<script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/mainController.js"></script>
+<script src="scripts/controllers/infoController.js"></script>
 <script src="scripts/directives/map-object.js"></script>
 <script src="scripts/services/countryService.js"></script>
-
 <script src="scripts/common/map-tooltip.js"></script>
 <!-- endbuild -->
 
