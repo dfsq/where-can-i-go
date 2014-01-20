@@ -5,7 +5,7 @@ describe('Controller: infoController', function () {
 	// load the controller's module
 	beforeEach(module('whereCanIGo'));
 
-	var mainController,
+	var infoController,
 		$rootScope,
 		scope;
 
@@ -13,7 +13,7 @@ describe('Controller: infoController', function () {
 	beforeEach(inject(function($controller, _$rootScope_) {
 		$rootScope = _$rootScope_;
 		scope = _$rootScope_.$new();
-		mainController = $controller('infoController', {
+		infoController = $controller('infoController', {
 			$scope: scope
 		});
 	}));
@@ -26,6 +26,11 @@ describe('Controller: infoController', function () {
 
 	it('should watch $rootScope.country change and load info', function() {
 		$rootScope.country = 'BY';
+		$rootScope.$digest();
+		scope.$apply();
+		$rootScope.$apply();
+//		expect(scope.loading).toBeTruthy();
+//		expect(scope.info).toBeDefined();
 	});
 
 });
