@@ -248,6 +248,9 @@
 			countries = [].slice.call(select.options).map(function (el) {
 				return el.label;
 			}),
+			countriesData = [].slice.call(select.options).map(function (el) {
+				return {code: el.value, label: el.label};
+			}),
 			pathList = {
 				active: mapDoc.getElementsByClassName('active')
 			},
@@ -255,8 +258,13 @@
 
 		path.forEach(function(p) {
 			p.classList.remove('remove');
-			if (countries.indexOf(p.dataset.name) === -1) {
+
+			var countryIndex;
+			if ((countryIndex = countries.indexOf(p.dataset.name)) === -1) {
 				p.classList.add('remove');
+			}
+			else {
+				p.id = countriesData[countryIndex].code;
 			}
 		});
 
