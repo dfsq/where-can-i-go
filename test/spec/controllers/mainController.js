@@ -18,7 +18,7 @@ describe('Controller: mainController', function () {
 		});
 	}));
 
-	it('should set country to "nullasdfasd"', function () {
+	it('should set country to "null"', function () {
 		expect($rootScope.country).toBe(null);
 	});
 

@@ -2,19 +2,21 @@
 
 describe('Controller: infoController', function () {
 
+	var infoController,
+		$rootScope,
+		$scope;
+
 	// load the controller's module
 	beforeEach(module('whereCanIGo'));
 
-	var infoController,
-		$rootScope,
-		scope;
-
 	// Initialize the controller and a mock scope
 	beforeEach(inject(function($controller, _$rootScope_) {
+
 		$rootScope = _$rootScope_;
-		scope = _$rootScope_.$new();
+		$scope = $rootScope.$new();
+
 		infoController = $controller('infoController', {
-			$scope: scope
+			$scope: $scope
 		});
 	}));
 
@@ -24,13 +26,17 @@ describe('Controller: infoController', function () {
 	});
 
 
-	it('should watch $rootScope.country change and load info', function() {
+	it('should watch $rootScope.country change, set loading=true and info={}', function() {
+
+		// Apply initial scope state
+		$rootScope.$apply();
+
+		// Emulate country selection by user
 		$rootScope.country = 'BY';
 		$rootScope.$digest();
-		scope.$apply();
-		$rootScope.$apply();
-//		expect(scope.loading).toBeTruthy();
-//		expect(scope.info).toBeDefined();
+
+		expect($scope.loading).toBeTruthy();
+		expect($scope.info).toEqual({});
 	});
 
 });
