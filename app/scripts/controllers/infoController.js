@@ -5,7 +5,6 @@ app.controller('infoController', ['$scope', '$rootScope', 'countryService', func
 	$scope.loading = false;
 
 	$rootScope.$watch('country', function(newCountry, oldCountry) {
-		console.log(newCountry, oldCountry);
 		if (newCountry !== oldCountry) {
 			$scope.loading = true;
 			loadInfo(newCountry);

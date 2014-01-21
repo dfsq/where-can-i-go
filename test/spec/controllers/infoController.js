@@ -18,6 +18,9 @@ describe('Controller: infoController', function () {
 		infoController = $controller('infoController', {
 			$scope: $scope
 		});
+
+		// Apply initial scope state
+		$rootScope.$apply();
 	}));
 
 
@@ -26,16 +29,21 @@ describe('Controller: infoController', function () {
 	});
 
 
-	it('should watch $rootScope.country change, set loading=true and info={}', function() {
-
-		// Apply initial scope state
-		$rootScope.$apply();
+	it('should set loading=true on $rootScope.country change', function() {
 
 		// Emulate country selection by user
 		$rootScope.country = 'BY';
 		$rootScope.$digest();
 
 		expect($scope.loading).toBeTruthy();
+	});
+
+	it('should set scope.info={} on $rootScope.country change', function() {
+
+		// Emulate country selection by user
+		$rootScope.country = 'BY';
+		$rootScope.$digest();
+
 		expect($scope.info).toEqual({});
 	});
 
