@@ -2,8 +2,6 @@
 
 app.directive('mapObject', ['countryService', function(countryService) {
 
-	window.country = countryService;
-
 	return {
 		link: function(scope, element) {
 
