@@ -1,15 +1,14 @@
 'use strict';
 
-app.controller('infoController', ['$scope', '$rootScope', 'countryService', function($scope, $rootScope, countryService) {
+app.controller('infoScreenController', ['$scope', '$rootScope', function($scope, $rootScope) {
 
-	$scope.loading = false;
+	$rootScope.loading = false;
 
 	$rootScope.$watch('country', function(newCountry, oldCountry) {
 		if (newCountry !== oldCountry) {
-			$scope.loading = true;
 			loadInfo(newCountry);
 		}
-	});
+	}, true);
 
 	function loadInfo(newCountry) {
 		$scope.info = {};

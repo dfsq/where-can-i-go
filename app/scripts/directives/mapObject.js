@@ -3,6 +3,9 @@
 app.directive('mapObject', ['countryService', function(countryService) {
 
 	return {
+		scope: {
+			countrySelect: '&'
+		},
 		controller: 'mapObjectController',
 		link: function(scope, element) {
 
@@ -12,8 +15,7 @@ app.directive('mapObject', ['countryService', function(countryService) {
 					selected: mapDoc.getElementsByClassName('selected'),
 					active:   mapDoc.getElementsByClassName('active')
 				},
-				tooltip = new MapTooltip('country').create(),
-				infoBox = new MapTooltip('info').create();
+				tooltip = new MapTooltip('country').create();
 
 			mapDoc.addEventListener('mouseover', function(e) {
 				if (filterTarget(e)) {
@@ -81,16 +83,10 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				e.target.classList.add('selected');
 
 				// TODO: clicked country name save in data-name
-				var country = e.target.dataset.name,
-					countryId = e.target.id;
+				var country = e.target.dataset.name;
 
-				// Show loading animation
-				infoBox.show();
-				infoBox.toggleLoading();
-
-				countryService.get({name: country}).success(function(data) {
+				scope.onCountrySelect({name: country}).then(function(data) {
 					highlight(data || {});
-					showInfo(country, data['vf'] || {});
 				});
 			}
 

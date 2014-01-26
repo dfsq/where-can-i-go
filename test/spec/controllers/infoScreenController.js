@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: infoController', function () {
+describe('Controller: infoScreenController', function () {
 
 	var infoController,
 		$rootScope,
@@ -15,7 +15,7 @@ describe('Controller: infoController', function () {
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
 
-		infoController = $controller('infoController', {
+		infoController = $controller('infoScreenController', {
 			$scope: $scope
 		});
 

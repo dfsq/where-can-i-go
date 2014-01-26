@@ -24,7 +24,7 @@
 
 
 <div class="info-screen" info-screen></div>
-<object id="map-object" map-object data="map.svg" type="image/svg+xml"></object>
+<object id="map-object" map-object on-country-select="onCountrySelect()" data="map.svg" type="image/svg+xml"></object>
 
 
 
@@ -37,10 +37,14 @@
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/mainController.js"></script>
-<script src="scripts/controllers/infoController.js"></script>
+<script src="scripts/controllers/mapObjectController.js"></script>
+<script src="scripts/controllers/infoScreenController.js"></script>
+
 <script src="scripts/directives/mapObject.js"></script>
 <script src="scripts/directives/infoScreen.js"></script>
+
 <script src="scripts/services/countryService.js"></script>
+
 <script src="scripts/common/mapTooltip.js"></script>
 <!-- endbuild -->
 
