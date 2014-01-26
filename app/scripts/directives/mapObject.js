@@ -3,6 +3,7 @@
 app.directive('mapObject', ['countryService', function(countryService) {
 
 	return {
+		controller: 'mapObjectController',
 		link: function(scope, element) {
 
 			var mapDoc = element[0].contentDocument,
