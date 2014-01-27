@@ -4,13 +4,15 @@ app.controller('mapObjectController', ['$scope', '$rootScope', 'countryService',
 
 	$scope.onCountrySelect = function(query) {
 
-		$rootScope.loading = true;
+		// Notify infoScreenController
+		$rootScope.$emit('countrySelect');
 
+		// Load actual data
 		return countryService.get(query).then(function(response) {
 			return response.data;
 		})
 		.then(function(data) {
-			$rootScope.country = data;
+			$rootScope.$emit('countryLoaded', data);
 		});
 	};
 }]);

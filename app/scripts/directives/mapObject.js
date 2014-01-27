@@ -89,17 +89,6 @@ app.directive('mapObject', ['countryService', function(countryService) {
 					highlight(data || {});
 				});
 			}
-
-			function showInfo(country, visaFree) {
-
-				infoBox.toggleLoading();
-
-				var html = '<h4>Citizens of ' + country + ' may go to..</h4>';
-				html += visaFree.map(function(el) {
-					return el.name;
-				}).join('<br>');
-				infoBox.setContent(html);
-			}
 		}
 	};
 }]);

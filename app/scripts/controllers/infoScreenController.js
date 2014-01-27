@@ -2,15 +2,21 @@
 
 app.controller('infoScreenController', ['$scope', '$rootScope', function($scope, $rootScope) {
 
-	$rootScope.loading = false;
+	$scope.infoShow = false;
+	$scope.loading = false;
+	$scope.country = null;
 
-	$rootScope.$watch('country', function(newCountry, oldCountry) {
-		if (newCountry !== oldCountry) {
-			loadInfo(newCountry);
-		}
-	}, true);
+	$rootScope.$on('countrySelect', function() {
+		$scope.infoShow = true;
+		$scope.loading = true;
+	});
 
-	function loadInfo(newCountry) {
-		$scope.info = {};
-	}
+	$rootScope.$on('countryLoaded', function(e, country) {
+		$scope.loading = false;
+		$scope.country = country;
+	});
+
+	$scope.close = function() {
+		$rootScope.infoShow = false;
+	};
 }]);

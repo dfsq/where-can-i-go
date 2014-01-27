@@ -49,35 +49,37 @@ noscript {
 		padding: 2px 7px;
 		text-transform: capitalize;
 	}
+}
 
-	&.info-tooltip {
-		display: block;
-		top: 0;
-		bottom: 0;
-		margin: 0;
-		border-radius: 0;
-		background-color: rgba(255, 255, 255, .5);
-		color: #222;
-		left: -100%;
-		width: 300px;
 
-		-webkit-transition: left .4s ease;
-		transition: left .4s ease;
+.info-screen {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -100%;
+	width: 300px;
+	background-color: rgba(255, 255, 255, .5);
+	color: #222;
 
-		&.loading {
-			background-image: url(../images/loading.gif);
-			background-repeat: no-repeat;
-			background-position: center center;
-		}
+	-webkit-transition: left .4s ease;
+	transition: left .4s ease;
 
-		&.show {
-			left: 0;
-		}
+	&.loading {
+		background-image: url(../images/loading.gif);
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
 
-		&.close {
-			position: absolute;
-			top: 5px;
-			right: 5px;
-		}
+	&.show {
+		left: 0;
+	}
+
+	.close {
+		position: absolute;
+		top: 5px;
+		right: 4px;
+		font-size: 30px;
+		line-height: 17px;
+		cursor: pointer;
 	}
 }
