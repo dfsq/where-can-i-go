@@ -9,10 +9,7 @@ app.controller('mapObjectController', ['$scope', '$rootScope', 'countryService',
 
 		// Load actual data
 		return countryService.get(query).then(function(response) {
-			return response.data;
-		})
-		.then(function(data) {
-			$rootScope.$emit('countryLoaded', data);
+			$rootScope.$emit('countryLoaded', response.data);
 		});
 	};
 }]);

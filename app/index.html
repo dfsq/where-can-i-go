@@ -26,7 +26,11 @@
 <div class="info-screen" info-screen ng-class="{show: infoShow, loading: loading}">
 	<div class="close" ng-click="close()">&times;</div>
 	<div ng-if="country">
-		<h4>{{country.name}}</h4>
+		<h4 ng-bind="country.name"></h4>
+	</div>
+	<div class="country-list" ng-hide="loading">
+		Citizens of {{country.name}} can go to
+		<div ng-repeat="ct in country.vf">{{ct.name}}</div>
 	</div>
 </div>
 <object id="map-object"

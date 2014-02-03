@@ -6,6 +6,8 @@ app.controller('infoScreenController', ['$scope', '$rootScope', function($scope,
 	$scope.loading = false;
 	$scope.country = null;
 
+	window.scope = $scope;
+
 	$rootScope.$on('countrySelect', function() {
 		$scope.infoShow = true;
 		$scope.loading = true;
@@ -17,6 +19,6 @@ app.controller('infoScreenController', ['$scope', '$rootScope', function($scope,
 	});
 
 	$scope.close = function() {
-		$rootScope.infoShow = false;
+		$scope.infoShow = false;
 	};
 }]);

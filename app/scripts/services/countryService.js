@@ -8,8 +8,8 @@ app.factory('countryService', ['$http', function($http) {
 	return {
 		/**
 		 * Get visa free countries for passed one.
-		 * @param country
-		 * @returns {angular.promise}
+		 * @param {Object} query
+		 * @return {angular.promise}
 		 */
 		get: function(query) {
 			return $http.get(collectionUrl, {
@@ -18,6 +18,16 @@ app.factory('countryService', ['$http', function($http) {
 					fo: true,
 					q: query
 				}
+			})
+			.then(function(response) {
+				var data;
+				if (response.data && typeof response.data === 'object') {
+					data = response;
+				}
+				else {
+					data = {data: query};
+				}
+				return data;
 			});
 		},
 
