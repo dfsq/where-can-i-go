@@ -1,5 +1,6 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
+@import "variables";
 @import "bootstrap-components";
 
 
@@ -60,7 +61,7 @@ noscript {
 	width: 300px;
 	background-color: rgba(255, 255, 255, .5);
 	color: #222;
-	padding: 5px 15px;
+	padding: 0 10px;
 
 	-webkit-transition: left .4s ease;
 	transition: left .4s ease;
@@ -83,4 +84,9 @@ noscript {
 		line-height: 17px;
 		cursor: pointer;
 	}
+
+
+	header {}
+
+	section {}
 }

@@ -21,4 +21,9 @@ app.controller('infoScreenController', ['$scope', '$rootScope', function($scope,
 	$scope.close = function() {
 		$scope.infoShow = false;
 	};
+
+
+	// Tabs
+	$scope.tab = 'vf';
+
 }]);
