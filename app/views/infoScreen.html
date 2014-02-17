@@ -1,0 +1,24 @@
+<div class="close" ng-click="close()">&times;</div>
+
+<div ng-if="country.name">
+
+	<header>
+		<h4>{{country.name}}</h4>
+	</header>
+
+	<section>
+		<ul class="nav nav-tabs">
+			<li ng-class="{active: tab == 'vf'}" ng-click="tab = 'vf'">
+				<a href="#">Visa free</a>
+			</li>
+			<li ng-class="{active: tab == 'va'}" ng-click="tab = 'va'">
+				<a href="#">Visa on arrival</a>
+			</li>
+			<li ng-class="{active: tab == 'vr'}" ng-click="tab = 'vr'">
+				<a href="#">Visa required</a>
+			</li>
+		</ul>
+	</section>
+
+</div>
+- 
