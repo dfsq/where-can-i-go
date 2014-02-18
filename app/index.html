@@ -23,7 +23,8 @@
 <![endif]-->
 
 
-<div class="info-screen" info-screen ng-class="{show: infoShow, loading: loading}"></div>
+<div ng-view></div>
+
 <object id="map-object"
 		map-object on-country-select="onCountrySelect()"
 		data="map.svg" type="image/svg+xml">
