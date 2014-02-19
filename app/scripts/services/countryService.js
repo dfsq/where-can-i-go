@@ -22,7 +22,7 @@ app.factory('countryService', ['$http', function($http) {
 			.then(function(response) {
 				var data;
 				if (response.data && typeof response.data === 'object') {
-					data = response;
+					data = response.data;
 				}
 				else {
 					data = {data: query};

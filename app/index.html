@@ -26,7 +26,9 @@
 <div ng-view></div>
 
 <object id="map-object"
-		map-object on-country-select="onCountrySelect()"
+		map-object
+		country="$rootScope.country"
+		on-country-select="onCountrySelect()"
 		data="map.svg" type="image/svg+xml">
 </object>
 

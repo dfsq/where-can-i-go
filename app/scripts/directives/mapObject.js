@@ -1,13 +1,21 @@
 'use strict';
 
-app.directive('mapObject', ['countryService', function(countryService) {
+app.directive('mapObject', ['countryService', '$rootScope', function(countryService, $rootScope) {
 
 	return {
 		scope: {
-			countrySelect: '&'
+			country: '='
 		},
+
 		controller: 'mapObjectController',
+
 		link: function(scope, element) {
+
+			$rootScope.$watch(function() { return $rootScope.country && $rootScope.country.code; }, function(newVal, oldVal) {
+				if (newVal !== oldVal) {
+					console.log('country changed', newVal, oldVal);
+				}
+			});
 
 			var mapDoc = element[0].contentDocument,
 				pathList = {
@@ -82,12 +90,10 @@ app.directive('mapObject', ['countryService', function(countryService) {
 				clearPath('selected');
 				e.target.classList.add('selected');
 
-				// TODO: clicked country name save in data-name
-				var country = e.target.dataset.name;
-
-				scope.onCountrySelect({name: country}).then(function(data) {
+				var countryCode = e.target.dataset.code;
+				scope.onCountrySelect(countryCode)/*.then(function(data) {
 					highlight(data || {});
-				});
+				});*/
 			}
 		}
 	};

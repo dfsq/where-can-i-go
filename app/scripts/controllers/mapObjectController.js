@@ -1,15 +1,9 @@
 'use strict';
 
-app.controller('mapObjectController', ['$scope', '$rootScope', 'countryService', function($scope, $rootScope, countryService) {
-
-	$scope.onCountrySelect = function(query) {
-
-		// Notify infoScreenController
-		$rootScope.$emit('countrySelect');
-
-		// Load actual data
-		return countryService.get(query).then(function(response) {
-			$rootScope.$emit('countryLoaded', response.data);
+app.controller('mapObjectController', ['$scope', '$rootScope', '$location', 'countryService', function($scope, $rootScope, $location, countryService) {
+	$scope.onCountrySelect = function(countryCode) {
+		$rootScope.$apply(function() {
+			$location.path('/from/' + countryCode);
 		});
 	};
 }]);

@@ -1,29 +1,25 @@
 'use strict';
 
-app.controller('infoScreenController', ['$scope', '$rootScope', function($scope, $rootScope) {
+app.controller('infoScreenController', ['$scope', '$rootScope', '$routeParams', 'countryService', function($scope, $rootScope, $routeParams, countryService) {
 
-	$scope.infoShow = false;
-	$scope.loading = false;
+	$scope.infoShow = true;
+	$scope.loading = true;
 	$scope.country = null;
 
-	window.scope = $scope;
-
-	$rootScope.$on('countrySelect', function() {
-		$scope.infoShow = true;
-		$scope.loading = true;
-	});
-
-	$rootScope.$on('countryLoaded', function(e, country) {
-		$scope.loading = false;
-		$scope.country = country;
-	});
+	$scope.tab = 'vf';
 
 	$scope.close = function() {
 		$scope.infoShow = false;
 	};
 
+	if ($routeParams.countryCode) {
+		$rootScope.country = $rootScope.country || {};
+		$rootScope.country.code = $routeParams.countryCode;
+	}
 
-	// Tabs
-	$scope.tab = 'vf';
-
+	// Load actual data
+	countryService.get({code: $routeParams.countryCode}).then(function(country) {
+		$rootScope.country = $scope.country = country;
+		$scope.loading = false;
+	});
 }]);
