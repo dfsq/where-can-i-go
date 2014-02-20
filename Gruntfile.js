@@ -39,11 +39,7 @@ module.exports = function (grunt) {
 			},
 			compass: {
 				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-				tasks: ['compass:server', 'autoprefixer']
-			},
-			styles: {
-				files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-				tasks: ['newer:copy:styles', 'autoprefixer']
+				tasks: ['compass:server'/*, 'autoprefixer'*/]
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -161,7 +157,8 @@ module.exports = function (grunt) {
 				httpGeneratedImagesPath: '/images/generated',
 				httpFontsPath: '/styles/fonts',
 				relativeAssets: false,
-				assetCacheBuster: false
+				assetCacheBuster: false,
+				watch: true
 			},
 			dist: {
 				options: {
