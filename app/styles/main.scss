@@ -88,5 +88,17 @@ noscript {
 
 	header {}
 
-	section {}
+	section {
+		.nav-tabs a {
+			color: #333;
+			cursor: pointer;
+		}
+
+		.tab-content {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+	}
 }
