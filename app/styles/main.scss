@@ -89,15 +89,49 @@ noscript {
 	header {}
 
 	section {
-		.nav-tabs a {
-			color: #333;
-			cursor: pointer;
+
+		.nav-tabs {
+			border: 0;
+
+			li {
+				a {
+					color: #333;
+					cursor: pointer;
+					border-radius: 0;
+					padding: 5px;
+					border: 0;
+				}
+
+				&.active a {
+					border: 0;
+				}
+			}
 		}
 
 		.tab-content {
+
 			display: none;
+			padding: 8px 15px 4px 5px;
+			margin: 0 -10px 0 0;
+			background: rgba(238, 238, 238, .6);
+
 			&.active {
 				display: block;
+			}
+
+			ul {
+				margin-bottom: 0;
+
+				li a {
+					cursor: pointer;
+					padding: 3px;
+					color: #222;
+					display: inline-block;
+
+					&:hover {
+						color: brown;
+					}
+				}
 			}
 		}
 	}
