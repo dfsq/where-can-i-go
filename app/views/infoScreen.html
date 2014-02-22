@@ -8,13 +8,13 @@
 
 	<section>
 		<ul class="nav nav-tabs">
-			<li ng-class="{active: tab == 'vf'}" ng-click="tab = 'vf'">
+			<li ng-class="{active: tab == 'vf'}" ng-click="setTab('vf')">
 				<a>Visa free</a>
 			</li>
-			<li ng-class="{active: tab == 'va'}" ng-click="tab = 'va'">
+			<li ng-class="{active: tab == 'va'}" ng-click="setTab('va')">
 				<a>Visa on arrival</a>
 			</li>
-			<li ng-class="{active: tab == 'vr'}" ng-click="tab = 'vr'">
+			<li ng-class="{active: tab == 'vr'}" ng-click="setTab('vr')">
 				<a>Visa required</a>
 			</li>
 		</ul>
@@ -47,4 +47,9 @@
 
 	</section>
 
+</div>
+
+<div ng-if="!country.name || country.error">
+	<h3>Ops! Something went wrong!..</h3>
+	<p ng-show="country.error" class="error">{{country.error}}</p>
 </div>

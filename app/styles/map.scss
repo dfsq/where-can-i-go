@@ -11,12 +11,19 @@ svg {
 			fill: coral;
 		}
 
-		&.visa-free {
+		// visa-free
+		&.vf {
 			fill: #68AF46;
 		}
 
-		&.visa-arrive {
+		// visa-arrive
+		&.va {
 			fill: #97af9f;
+		}
+
+		// visa-required
+		&.vr {
+			fill: #ff3f3a;
 		}
 
 		&.remove {

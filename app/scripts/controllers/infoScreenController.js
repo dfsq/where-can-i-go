@@ -6,16 +6,16 @@ app.controller('infoScreenController', ['$scope', '$rootScope', '$routeParams', 
 	$scope.loading = true;
 	$scope.country = null;
 
-	$scope.tab = 'vf';
+	$rootScope.tab = $scope.tab = 'vf';
 
 	$scope.close = function() {
 		$scope.infoShow = false;
 	};
 
-	if ($routeParams.countryCode) {
-		$rootScope.country = $rootScope.country || {};
-		$rootScope.country.code = $routeParams.countryCode;
-	}
+	$scope.setTab = function(tab) {
+		$scope.tab = tab;
+		$rootScope.tab = tab;
+	};
 
 	// Load actual data
 	countryService.get({code: $routeParams.countryCode}).then(function(country) {

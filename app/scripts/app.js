@@ -8,7 +8,7 @@ var app = angular.module('whereCanIGo', [
 app.config(function($routeProvider) {
 	$routeProvider
 		.when('/from/:countryCode', {
-			templateUrl: 'views/country.html',
+			templateUrl: 'views/destinationsInfo.html',
 			controller: 'infoScreenController'
 		})
 		.otherwise({

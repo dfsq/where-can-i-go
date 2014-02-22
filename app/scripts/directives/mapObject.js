@@ -11,9 +11,13 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 
 		link: function(scope, element) {
 
-			$rootScope.$watch(function() { return $rootScope.country && $rootScope.country.code; }, function(newVal, oldVal) {
+			// Listen country change
+			$rootScope.$watch(function() {
+				return $rootScope.country && $rootScope.country.code + '|' + $rootScope.tab;
+			}, function(newVal, oldVal) {
 				if (newVal !== oldVal) {
-					console.log('country changed', newVal, oldVal);
+					console.log('country|tab changed', newVal, oldVal);
+					highlight($rootScope.country, $rootScope.tab);
 				}
 			});
 
@@ -70,19 +74,15 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 				path.classList.add('active');
 			}
 
-			function highlight(list) {
-				angular.forEach(list['vf'], function(country) {
-					var path = mapDoc.getElementById(country.name.toLowerCase()); // todo: testing...
-					if (path) {
-						path.classList.add('visa-free');
+			function highlight(list, tab) {
+				for (var i = 0; i < list[tab].length; i++) {
+					var path = mapDoc.querySelectorAll('[data-code="' + list[tab][i].code + '"]');
+					if (path && path.length) {
+						for (var ii = 0; ii < path.length; ii++) {
+							path[ii].classList.add(tab);
+						}
 					}
-				});
-				angular.forEach(list['va'], function(country) {
-					var path = mapDoc.getElementById(country.name);
-					if (path) {
-						path.classList.add('visa-arrive');
-					}
-				});
+				}
 			}
 
 			function setSelectedPath(e) {
@@ -91,9 +91,7 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 				e.target.classList.add('selected');
 
 				var countryCode = e.target.dataset.code;
-				scope.onCountrySelect(countryCode)/*.then(function(data) {
-					highlight(data || {});
-				});*/
+				scope.onCountrySelect(countryCode);
 			}
 		}
 	};
