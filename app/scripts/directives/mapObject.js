@@ -14,20 +14,38 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 			// Listen country change
 			$rootScope.$watch(function() {
 				return $rootScope.country && $rootScope.country.code + '|' + $rootScope.tab;
-			}, function(newVal, oldVal) {
+			},
+			function(newVal, oldVal) {
 				if (newVal !== oldVal) {
+
 					console.log('country|tab changed', newVal, oldVal);
+
+					// Clear previous hightlights
+					if (oldVal) {
+						var oldParts = oldVal.split('|');
+						clearPath(oldParts[1]);
+					}
+
+					// Highlight new
 					highlight($rootScope.country, $rootScope.tab);
 				}
 			});
 
+
+			/**
+			 * Live NodeList collections.
+			 */
 			var mapDoc = element[0].contentDocument,
 				pathList = {
 					all: mapDoc.getElementsByTagName('path'),
 					selected: mapDoc.getElementsByClassName('selected'),
-					active:   mapDoc.getElementsByClassName('active')
+					active:   mapDoc.getElementsByClassName('active'),
+					vf: mapDoc.getElementsByClassName('vf'),
+					va: mapDoc.getElementsByClassName('va'),
+					vr: mapDoc.getElementsByClassName('vr')
 				},
 				tooltip = new MapTooltip('country').create();
+
 
 			mapDoc.addEventListener('mouseover', function(e) {
 				if (filterTarget(e)) {
@@ -43,12 +61,6 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 				}
 			}, false);
 
-			mapDoc.addEventListener('click', function(e) {
-				if (filterTarget(e)) {
-					setSelectedPath(e);
-				}
-			}, false);
-
 			mapDoc.addEventListener('mousemove', function(e) {
 				if (filterTarget(e)) {
 					tooltip.setPosition({
@@ -58,14 +70,21 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 				}
 			}, false);
 
+			mapDoc.addEventListener('click', function(e) {
+				if (filterTarget(e)) {
+					setSelectedPath(e);
+				}
+			}, false);
+
+
 			function filterTarget(e) {
 				return e.target.nodeName === 'path';
 			}
 
 			function clearPath(className) {
-				var path = pathList[className][0];
-				if (path) {
-					path.classList.remove(className);
+				var path = pathList[className];
+				while (path.length) {
+					path[0].classList.remove(className);
 				}
 			}
 
@@ -74,13 +93,34 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 				path.classList.add('active');
 			}
 
-			function highlight(list, tab) {
-				for (var i = 0; i < list[tab].length; i++) {
-					var path = mapDoc.querySelectorAll('[data-code="' + list[tab][i].code + '"]');
-					if (path && path.length) {
-						for (var ii = 0; ii < path.length; ii++) {
-							path[ii].classList.add(tab);
-						}
+			function highlight(country, tab) {
+
+				setClass(country.code, 'selected');
+
+				if (country[tab]) for (var i = 0; i < country[tab].length; i++) {
+					setClass(country[tab][i].code, tab);
+				}
+			}
+
+			/**
+			 * Get country path elements by country code.
+			 * @param {String} code
+			 * @returns {NodeList}
+			 */
+			function getPath(code) {
+				return mapDoc.querySelectorAll('[data-code="' + code + '"]');
+			}
+
+			/**
+			 * Set className to elements with country code.
+			 * @param {String} code
+			 * @param {String} className
+			 */
+			function setClass(code, className) {
+				var list = getPath(code);
+				if (list && list.length) {
+					for (var i = 0; i < list.length; i++) {
+						list[i].classList.add(className);
 					}
 				}
 			}
