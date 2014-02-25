@@ -20,7 +20,7 @@ describe('Controller: infoScreenController', function () {
 
 		// Set up mock http
 		$httpBackend.when('GET', 'https://api.mongolab.com/api/1/databases/wherecanigo/collections/countries?apiKey=IXGMQbrk_gGDz-BsX-CCcYAsfEEcsuI3&fo=true&q=%7B%7D').respond(
-			{"code": "BY" , "name": "Belarus"}
+			{code: 'BY', name: 'Belarus'}
 		);
 
 		infoController = $controller('infoScreenController', {

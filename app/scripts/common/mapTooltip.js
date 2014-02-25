@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * MapTooltip to be used with SVG map to display diferent information.
  * @constructor

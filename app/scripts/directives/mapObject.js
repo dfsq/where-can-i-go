@@ -97,8 +97,10 @@ app.directive('mapObject', ['countryService', '$rootScope', function(countryServ
 
 				setClass(country.code, 'selected');
 
-				if (country[tab]) for (var i = 0; i < country[tab].length; i++) {
-					setClass(country[tab][i].code, tab);
+				if (country[tab]) {
+					for (var i = 0; i < country[tab].length; i++) {
+						setClass(country[tab][i].code, tab);
+					}
 				}
 			}
 
