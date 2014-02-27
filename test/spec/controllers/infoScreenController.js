@@ -19,12 +19,13 @@ describe('Controller: infoScreenController', function () {
 		$scope = $rootScope.$new();
 
 		// Set up mock http
-		$httpBackend.when('GET', 'https://api.mongolab.com/api/1/databases/wherecanigo/collections/countries?apiKey=IXGMQbrk_gGDz-BsX-CCcYAsfEEcsuI3&fo=true&q=%7B%7D').respond(
+		$httpBackend.when('GET', '/from/BY').respond(
 			{code: 'BY', name: 'Belarus'}
 		);
 
 		infoController = $controller('infoScreenController', {
-			$scope: $scope
+			$scope: $scope,
+			$routeParams: {countryCode: 'BY'}
 		});
 
 		// Apply initial scope state

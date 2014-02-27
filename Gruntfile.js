@@ -1,13 +1,6 @@
-// Generated on 2013-12-27 using generator-angular 0.6.0
 'use strict';
 
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
-
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
 	// Load grunt tasks automatically
 	require('load-grunt-tasks')(grunt);
@@ -16,6 +9,7 @@ module.exports = function(grunt) {
 	require('time-grunt')(grunt);
 
 	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-express');
 
 	// Define the configuration for all the tasks
 	grunt.initConfig({
@@ -265,11 +259,20 @@ module.exports = function(grunt) {
 				configFile: 'karma.conf.js',
 				autoWatch: true
 			}
+		},
+
+		express: {
+			server: {
+				options: {
+					port: 9000,
+					hostname: '*'
+				}
+			}
 		}
 	});
 
 
-	grunt.registerTask('serve', function(target) {
+	grunt.registerTask('serve', function (target) {
 		if (target === 'dist') {
 			return grunt.task.run(['build', 'connect:dist:keepalive']);
 		}
@@ -282,7 +285,7 @@ module.exports = function(grunt) {
 		]);
 	});
 
-	grunt.registerTask('server', function() {
+	grunt.registerTask('server', function () {
 		grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
 		grunt.task.run(['serve']);
 	});
@@ -308,6 +311,7 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('default', [
+		'express',
 		'newer:jshint',
 		'test',
 		'build'
