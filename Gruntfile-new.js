@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
 	grunt.initConfig({
+
 		pkg: grunt.file.readJSON('package.json'),
 
 		uglify: {
@@ -46,6 +47,15 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 
+
 	// Register tasks
-	grunt.registerTask('default', ['uglify']);
+	grunt.registerTask('default', [
+		'express'
+	]);
+
+	grunt.registerTask('test', []);
+
+	grunt.registerTask('build', [
+		'clean:dist'
+	]);
 };
