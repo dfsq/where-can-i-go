@@ -2,7 +2,10 @@
  * Simple Express server for the application.
  */
 var express = require('express'),
+	site = require('./site'),
+	api = require('./api'),
 	app = express();
+
 
 // Development environment
 app.configure('development', function() {
@@ -10,18 +13,12 @@ app.configure('development', function() {
 	app.use(express.static(__dirname + '/../.tmp'));
 });
 
+// Common index route
+app.get(/^((?!\/api\/).)*$/, site.index);
 
-// Server index.html for all requests
-app.get('/', function(req, res) {
-	res.sendfile('index.html');
-});
-
-
-// ... exceprt API
-app.get('/api/from/:fromCountry', function(req, res) {
-	console.log('Params', req.params);
-	res.send('From: ' + req.params.fromCountry);
-});
+// API routes
+app.get('/api/from/:fromCountry', api.from);
+app.get('/api/from/:fromCountry/to/:toCountry', api.fromTo);
 
 
 // Run server
