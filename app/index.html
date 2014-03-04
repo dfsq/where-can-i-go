@@ -9,7 +9,7 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 	<!-- build:css({.tmp,app}) styles/main.css -->
-	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="/styles/main.css">
 	<!-- endbuild -->
 </head>
 <body ng-app="whereCanIGo" ng-controller="mainController">
@@ -18,7 +18,7 @@
 	<h4>Javascript is absolutely needed for this application!</h4>
 </noscript>
 
-<!--[if lt IE 9]>
+<!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
@@ -29,29 +29,29 @@
 		map-object
 		country="$rootScope.country"
 		on-country-select="onCountrySelect()"
-		data="map.svg" type="image/svg+xml">
+		data="/map.svg" type="image/svg+xml">
 </object>
 
 
 
 <!-- Scripts -->
 <!-- build:js scripts/modules.js -->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/mainController.js"></script>
-<script src="scripts/controllers/mapObjectController.js"></script>
-<script src="scripts/controllers/infoScreenController.js"></script>
+<script src="/scripts/app.js"></script>
+<script src="/scripts/controllers/mainController.js"></script>
+<script src="/scripts/controllers/mapObjectController.js"></script>
+<script src="/scripts/controllers/infoScreenController.js"></script>
 
-<script src="scripts/directives/mapObject.js"></script>
-<script src="scripts/directives/infoScreen.js"></script>
+<script src="/scripts/directives/mapObject.js"></script>
+<script src="/scripts/directives/infoScreen.js"></script>
 
-<script src="scripts/services/countryService.js"></script>
+<script src="/scripts/services/countryService.js"></script>
 
-<script src="scripts/common/mapTooltip.js"></script>
+<script src="/scripts/common/mapTooltip.js"></script>
 <!-- endbuild -->
 
 </body>

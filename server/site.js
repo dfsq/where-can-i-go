@@ -4,9 +4,5 @@
  * @param res
  */
 exports.index = function(req, res) {
-	if (req.url !== '/') {
-		res.redirect('/');
-	}
-//	var indexPath = require('path').resolve(__dirname + '/../app/index.html');
-//	res.sendfile(indexPath);
+	res.sendfile(require('path').resolve(__dirname + '/../app/index.html'));
 };
