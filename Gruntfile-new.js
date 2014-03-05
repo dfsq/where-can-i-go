@@ -10,22 +10,36 @@ module.exports = function(grunt) {
 			},
 			dev: {
 				options: {
-					script: 'server/server.js',
-					background: false
+					script: 'server/server.js'
 				}
 			}
 		},
 
+		watch: {
+			express: {
+				files: ['server/*.js'],
+				tasks: ['express:dev'],
+				options: {
+					nospawn: true
+				}
+			}
+		},
+
+		concurrent: {
+			server: [
+				'compass:server'
+			]
+		},
+
 		compass: {
 			options: {
-				sassDir: '<%= yeoman.app %>/styles',
-				cssDir: '.tmp/styles',
-				imagesDir: '<%= yeoman.app %>/images',
-				importPath: '<%= yeoman.app %>/bower_components',
-				httpImagesPath: '/images',
-				relativeAssets: false,
-				assetCacheBuster: false,
-				watch: false
+				sassDir: 'app/styles',
+				cssDir: '.tmp/styles'
+			},
+			server: {
+				options: {
+					watch: true
+				}
 			}
 		},
 
@@ -69,14 +83,18 @@ module.exports = function(grunt) {
 	});
 
 	// Load tasks
+	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-express-server');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 
 	// Register tasks
-	grunt.registerTask('default', [
-		'express'
+	grunt.registerTask('server', [
+		'express:dev',
+		'concurrent:server',
+		'watch'
 	]);
 };
