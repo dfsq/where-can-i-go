@@ -143,7 +143,7 @@ app.directive('mapObject', ['countryService', '$rootScope', '$timeout', function
 			// Delay directive linking untill DOM is ready (SVG takes its sweet time)
 			$timeout(function() {
 				initDirective(scope, element);
-			}, 0);
+			}, 50);
 		}
 	};
 }]);
