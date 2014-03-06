@@ -4,8 +4,8 @@
 var express = require('express'),
 	path = require('path'),
 	config = require('./config'),
-	site = require('./site'),
-	api = require('./api'),
+	site = require('./routes/site'),
+	api = require('./routes/api'),
 	app = express();
 
 
