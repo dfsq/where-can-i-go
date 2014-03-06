@@ -5,9 +5,6 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 
 		express: {
-			options: {
-				port: 9000
-			},
 			dev: {
 				options: {
 					script: 'server/server.js'

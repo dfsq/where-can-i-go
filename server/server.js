@@ -3,6 +3,7 @@
  */
 var express = require('express'),
 	path = require('path'),
+	config = require('./config'),
 	site = require('./site'),
 	api = require('./api'),
 	app = express();
@@ -10,8 +11,8 @@ var express = require('express'),
 
 // Development environment
 app.configure('development', function() {
-	app.use(express.static(path.join(__dirname, '..', 'app')));
-	app.use(express.static(path.join(__dirname, '..', '.tmp')));
+	app.use(express.static(config.server.appPath));
+	app.use(express.static(config.server.assetsPath));
 });
 
 
@@ -27,5 +28,5 @@ app.get('/*', site.index);
 
 
 // Run server
-app.listen(9000);
-console.log('Server listening on port 9000');
+app.listen(config.server.port);
+console.log('Server listening on port ' + config.server.port);
