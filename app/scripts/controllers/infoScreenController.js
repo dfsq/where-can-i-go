@@ -18,7 +18,7 @@ app.controller('infoScreenController', ['$scope', '$rootScope', '$routeParams', 
 	};
 
 	// Load actual data
-	countryService.get({code: $routeParams.countryCode}).then(function(country) {
+	countryService.from({code: $routeParams.countryCode}).then(function(country) {
 		$rootScope.country = $scope.country = country;
 		$scope.loading = false;
 	});

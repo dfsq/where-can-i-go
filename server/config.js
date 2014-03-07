@@ -8,6 +8,7 @@ module.exports = {
 	},
 	mongo: {
 		dbUrl: 'https://api.mongolab.com/api/1',
+		dbPath: '/databases/wherecanigo/collections',
 		apiKey: 'IXGMQbrk_gGDz-BsX-CCcYAsfEEcsuI3'
 	}
 };

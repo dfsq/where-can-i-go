@@ -2,14 +2,18 @@
  * API routes.
  */
 
-var mongoProxy = require('../lib/mongo-proxy');
+var mongoProxy = require('../lib/mongo-proxy'),
+	config = require('../config');
 
 /**
  * From country information.
  */
 exports.from = function(req, res) {
-	console.log('Params', req.params);
-	mongoProxy(req, res);
+	var params = {
+		fo: true,
+		q: {code: req.params.fromCountry}
+	};
+	mongoProxy('countries', params, req, res);
 };
 
 /**
