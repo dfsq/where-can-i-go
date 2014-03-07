@@ -5,7 +5,8 @@ describe('Controller: infoScreenController', function () {
 	var infoController,
 		$rootScope,
 		$scope,
-		$httpBackend;
+		$httpBackend,
+		routeParams;
 
 	// load the controller's module
 	beforeEach(module('whereCanIGo'));
@@ -13,19 +14,22 @@ describe('Controller: infoScreenController', function () {
 	// Initialize the controller and a mock scope
 	beforeEach(inject(function($controller, _$rootScope_, $injector) {
 
-		$httpBackend = $injector.get('$httpBackend');
+		routeParams = {
+			countryCode: 'BY'
+		};
 
+		$httpBackend = $injector.get('$httpBackend');
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
 
 		// Set up mock http
-		$httpBackend.when('GET', '/from/BY').respond(
-			{code: 'BY', name: 'Belarus'}
+		$httpBackend.when('GET', '/api/from/' + routeParams.countryCode).respond(
+			{code: routeParams.countryCode, name: '???'}
 		);
 
 		infoController = $controller('infoScreenController', {
 			$scope: $scope,
-			$routeParams: {countryCode: 'BY'}
+			$routeParams: routeParams
 		});
 
 		// Apply initial scope state
@@ -33,13 +37,22 @@ describe('Controller: infoScreenController', function () {
 	}));
 
 
-	it('should set property "loading" to "true"', function () {
+	it('should set property "loading" to "true" before request', function() {
 		expect($scope.loading).toBeTruthy();
 	});
 
-	it('should load data for country code BY', function() {
+	it('should load data for country defined by routeParams.countryCode', function() {
+
+		expect($rootScope.country).toBeUndefined();
 		$httpBackend.flush();
-		expect($rootScope.country.code).toBe('BY');
+
+		expect($rootScope.country.code).toBe(routeParams.countryCode);
+		expect($scope.country.code).toBe(routeParams.countryCode);
+	});
+
+	it('should set property "loading" to "false" after request', function() {
+		$httpBackend.flush();
+		expect($scope.loading).toBeFalsy();
 	});
 
 });
