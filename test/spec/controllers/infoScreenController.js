@@ -24,7 +24,7 @@ describe('Controller: infoScreenController', function () {
 
 		// Set up mock http
 		$httpBackend.when('GET', '/api/from/' + routeParams.countryCode).respond(
-			{code: routeParams.countryCode, name: '???'}
+			{code: routeParams.countryCode}
 		);
 
 		infoController = $controller('infoScreenController', {
