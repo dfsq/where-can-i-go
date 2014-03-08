@@ -1,10 +1,28 @@
 === SVG
-- Sudan split to Sudan (SD) and South Sudan (SS)
-- Timor split to West Timor (Indonesia) and East Timor (Timor-Leste)
+1. Sudan split to Sudan (SD) and South Sudan (SS)
+2. Timor split to West Timor (Indonesia) and East Timor (Timor-Leste)
+
+
+=== App
+1. InfoScreen: when closing should clear counties highligh from the map.
+2. InfoScreen: actions on counties
+	mouseover from the list -> highlight (arrow to the country?)
+	click -> show trip detail to this country
+
+
+=== Grunt
+1. Add grunt tasks for concat, usemin.
+2. Add test, build tasks.
 
 
 === Server
-- Mongo connect with MongoLab
-	- Client make API request to server
-- Server tests
-- Deploy to Heroku
+1. Server tests.
+
+
+=== Data
+1. Populate database
+
+
+=== Other
+1. Deploy to Heroku
+
