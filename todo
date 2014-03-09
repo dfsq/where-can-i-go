@@ -8,6 +8,8 @@
 2. InfoScreen: actions on counties
 	mouseover from the list -> highlight (arrow to the country?)
 	click -> show trip detail to this country
+3. Hightlight the country user browsing from (Geolocation API)?
+4. LocalStorage or SessionStorage service.
 
 
 === Grunt
