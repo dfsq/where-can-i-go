@@ -40,13 +40,27 @@ module.exports = function(grunt) {
 			}
 		},
 
+		concat: {
+			libs: {
+				src: [
+					'app/bower_components/angular/angular.min.js',
+					'app/bower_components/angular-route/angular-route.min.js'
+				],
+				dest: 'build/scripts/lib/modules.js'
+			},
+			dist: {
+				src: ['app/scripts/*.js', 'app/scripts/**/*.js'],
+				dest: 'build/scripts/<%= pkg.name %>.js'
+			}
+		},
+
 		uglify: {
 			options: {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'src/*.js',
-				dest: 'build/<%= pkg.name %>.min.js'
+				src: 'build/scripts/*.js',
+				dest: 'build/scripts/<%= pkg.name %>.min.js'
 			}
 		},
 
@@ -85,6 +99,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 
@@ -93,5 +108,10 @@ module.exports = function(grunt) {
 		'express:dev',
 		'concurrent:server',
 		'watch'
+	]);
+
+	grunt.registerTask('build', [
+		'concat',
+		'uglify'
 	]);
 };
