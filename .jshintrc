@@ -19,7 +19,7 @@
 	"smarttabs": true,
 	"globals": {
 		"angular": false,
-		"app": false,
+		"app": true,
 		"MapTooltip": false
 	}
 }

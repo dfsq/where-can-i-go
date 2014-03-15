@@ -46,11 +46,11 @@ module.exports = function(grunt) {
 					'app/bower_components/angular/angular.min.js',
 					'app/bower_components/angular-route/angular-route.min.js'
 				],
-				dest: 'build/scripts/lib/modules.js'
+				dest: 'dist/scripts/lib/modules.js'
 			},
 			dist: {
 				src: ['app/scripts/*.js', 'app/scripts/**/*.js'],
-				dest: 'build/scripts/<%= pkg.name %>.js'
+				dest: 'dist/scripts/<%= pkg.name %>.js'
 			}
 		},
 
@@ -59,37 +59,14 @@ module.exports = function(grunt) {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'build/scripts/*.js',
-				dest: 'build/scripts/<%= pkg.name %>.min.js'
+				src: 'dist/scripts/*.js',
+				dest: 'dist/scripts/<%= pkg.name %>.min.js'
 			}
 		},
 
 		jshint: {
 			all: ['Gruntfile.js', 'app/scripts/**/*.js', 'test/spec/**/*.js'],
-			options: {
-				node: true,
-				browser: true,
-				esnext: true,
-				bitwise: true,
-				camelcase: true,
-				curly: true,
-				eqeqeq: true,
-				immed: true,
-				indent: 4,
-				latedef: true,
-				newcap: true,
-				noarg: true,
-				quotmark: 'single',
-				undef: true,
-				unused: true,
-				trailing: true,
-				smarttabs: true,
-				globals: {
-					angular: false,
-					app: true,
-					MapTooltip: false
-				}
-			}
+			jshintrc: '.jshintrc'
 		}
 	});
 

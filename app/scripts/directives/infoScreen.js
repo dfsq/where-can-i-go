@@ -9,7 +9,9 @@ app.directive('infoScreen', function() {
 			// TODO: Highlight currently selected country by clicking, show details?
 			element.on('click', function(e) {
 				var target = angular.element(e.target);
-				if (!target.hasClass('country')) return;
+				if (!target.hasClass('country')) {
+					return;
+				}
 				console.log('country', target.text());
 			});
 		}
