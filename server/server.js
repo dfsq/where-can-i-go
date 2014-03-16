@@ -9,9 +9,11 @@ var express = require('express'),
 	app = express();
 
 
-// Development environment
+// Static assets
+app.use(express.static(config.server.appPath));
+
+// Development environment has different assets path
 app.configure('development', function() {
-	app.use(express.static(config.server.appPath));
 	app.use(express.static(config.server.assetsPath));
 });
 

@@ -11,7 +11,8 @@ module.exports = function(grunt) {
 		express: {
 			dev: {
 				options: {
-					script: 'server/server.js'
+					script: 'server/server.js',
+					node_env: 'development'
 				}
 			}
 		},
@@ -19,7 +20,7 @@ module.exports = function(grunt) {
 		watch: {
 			express: {
 				files: ['server/*.js'],
-				tasks: ['express:dev'],
+				tasks: ['express'],
 				options: {
 					nospawn: true
 				}
@@ -50,20 +51,16 @@ module.exports = function(grunt) {
 		},
 
 		concat: {
+			scripts: {
+				src: ['app/scripts/*.js', 'app/scripts/**/*.js'],
+				dest: distPath + '/scripts/scripts.js'
+			},
 			libs: {
 				src: [
 					'app/bower_components/angular/angular.min.js',
 					'app/bower_components/angular-route/angular-route.min.js'
 				],
-				dest: distPath + '/scripts/lib/modules.js'
-			},
-			scripts: {
-				src: ['app/scripts/*.js', 'app/scripts/**/*.js'],
-				dest: distPath + '/scripts/<%= pkg.name %>.js'
-			},
-			styles: {
-				src: [distPath + '/styles/main.css', distPath + '/styles/map.css'],
-				dest: distPath + '/styles/main.css'
+				dest: distPath + '/scripts/modules.js'
 			}
 		},
 
@@ -72,8 +69,8 @@ module.exports = function(grunt) {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: distPath + '/scripts/*.js',
-				dest: distPath + '/scripts/<%= pkg.name %>.min.js'
+				src: distPath + '/scripts/scripts.js',
+				dest: distPath + '/scripts/scripts.js'
 			}
 		},
 
@@ -82,7 +79,7 @@ module.exports = function(grunt) {
 				options: {
 					jshintrc: '.jshintrc'
 				},
-				src: ['Gruntfile-new.js', 'app/scripts/**/*.js']
+				src: ['Gruntfile.js', 'app/scripts/**/*.js']
 			},
 			test: {
 				options: {
@@ -95,8 +92,7 @@ module.exports = function(grunt) {
 		clean: {
 			build: ['.tmp', 'dist'],
 			post: [
-				distPath + '/scripts/<%= pkg.name %>.js',
-				distPath + '/styles/map.css'
+				distPath + '/scripts/<%= pkg.name %>.js'
 			]
 		},
 
@@ -110,10 +106,26 @@ module.exports = function(grunt) {
 						src: [
 							'*.{ico,svg}',
 							'images/**',
+							'views/**',
 							'index.html'
+						]
+					},
+					{
+						cwd: './',
+						dest: distPath + '/../',
+						src: [
+							'server/**',
+							'Procfile'
 						]
 					}
 				]
+			}
+		},
+
+		usemin: {
+			html: [distPath + '/index.html'],
+			options: {
+				assetsDirs: [distPath]
 			}
 		}
 	});
@@ -128,11 +140,15 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-usemin');
 
+
+	// Default task is the server
+	grunt.registerTask('default', ['server']);
 
 	// Register tasks
 	grunt.registerTask('server', [
-		'express:dev',
+		'express',
 		'concurrent:server',
 		'watch'
 	]);
@@ -143,6 +159,7 @@ module.exports = function(grunt) {
 		'concat',
 		'copy:build',
 		'uglify',
-		'clean:post'
+		'clean:post',
+		'usemin'
 	]);
 };
