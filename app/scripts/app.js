@@ -5,7 +5,7 @@ var app = angular.module('whereCanIGo', [
 	'ngRoute'
 ]);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/from/:countryCode', {
 			templateUrl: '/views/infoScreen.html',
@@ -16,4 +16,4 @@ app.config(function($routeProvider, $locationProvider) {
 		});
 
 	$locationProvider.html5Mode(true);
-});
+}]);
