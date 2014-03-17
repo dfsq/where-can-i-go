@@ -85,7 +85,7 @@ module.exports = function(grunt) {
 				options: {
 					jshintrc: 'test/.jshintrc'
 				},
-				src: ['test/spec/{,*/}*.js'] //'test/spec/**/*.js'
+				src: ['test/spec/{,*/}*.js']
 			}
 		},
 
@@ -115,7 +115,8 @@ module.exports = function(grunt) {
 						dest: distPath + '/../',
 						src: [
 							'server/**',
-							'Procfile'
+							'Procfile',
+							'package.json'
 						]
 					}
 				]
