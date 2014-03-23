@@ -90,7 +90,7 @@ module.exports = function(grunt) {
 		},
 
 		clean: {
-			build: ['.tmp', 'dist'],
+			build: ['.tmp', 'dist/app', 'dist/server', 'dist/package.json', 'dist/Procfile'],
 			post: [
 				distPath + '/scripts/<%= pkg.name %>.js'
 			]
@@ -115,7 +115,8 @@ module.exports = function(grunt) {
 						dest: distPath + '/../',
 						src: [
 							'server/**',
-							'Procfile'
+							'Procfile',
+							'package.json'
 						]
 					}
 				]

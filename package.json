@@ -23,6 +23,7 @@
 		"grunt-ngmin": "~0.0.2",
 		"grunt-rev": "~0.1.0"
 	},
+	"main": "index.html",
 	"engines": {
 		"node": ">=0.8.0"
 	},
