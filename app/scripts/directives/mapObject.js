@@ -45,7 +45,7 @@ app.directive('mapObject', ['countryService', '$rootScope', '$timeout', function
 		mapDoc.addEventListener('mouseover', function(e) {
 			if (filterTarget(e)) {
 				setActivePath(e.target);
-				tooltip.setContent(e.target.dataset.name).show();
+				tooltip.setContent(e.target.getAttribute('data-name')).show();
 			}
 		}, false);
 
@@ -127,7 +127,7 @@ app.directive('mapObject', ['countryService', '$rootScope', '$timeout', function
 			clearPath('selected');
 			e.target.classList.add('selected');
 
-			var countryCode = e.target.dataset.code;
+			var countryCode = e.target.getAttribute('data-code');
 			scope.onCountrySelect(countryCode);
 		}
 	}
