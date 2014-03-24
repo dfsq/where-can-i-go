@@ -7,7 +7,6 @@
 	},
 	"devDependencies": {
 		"grunt": "~0.4.1",
-
 		"grunt-concurrent": "^0.4.3",
 		"grunt-express-server": "~0.4.13",
 		"grunt-contrib-watch": "~0.5.2",
@@ -18,13 +17,8 @@
 		"grunt-contrib-clean": "~0.5.0",
 		"grunt-contrib-copy": "^0.4.1",
 		"grunt-usemin": "~2.0.0",
-
-		"grunt-google-cdn": "~0.2.0",
-		"grunt-newer": "^0.5.4",
-		"grunt-ngmin": "~0.0.2",
-		"grunt-rev": "~0.1.0"
+		"grunt-karma": "^0.7.2"
 	},
-	"main": "index.html",
 	"engines": {
 		"node": ">=0.8.0"
 	},
