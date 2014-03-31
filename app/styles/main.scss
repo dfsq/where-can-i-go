@@ -4,13 +4,19 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import "bootstrap-components";
 
 
-html, body, #map-object {
+html, body, #map-object, .browsehappy {
 	width: 100%;
 	height: 100%;
 	padding: 0;
 	margin: 0;
 	background-color: #222;
 	overflow: hidden;
+}
+
+.browsehappy {
+  color: #EEE;
+  text-align: center;
+  padding-top: 30px;
 }
 
 noscript {

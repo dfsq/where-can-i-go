@@ -128,6 +128,14 @@ module.exports = function(grunt) {
 			options: {
 				assetsDirs: [distPath]
 			}
+		},
+
+		// Test settings
+		karma: {
+			unit: {
+				configFile: 'karma.conf.js',
+				autoWatch: false
+			}
 		}
 	});
 
@@ -142,6 +150,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-usemin');
+	grunt.loadNpmTasks('grunt-karma');
 
 
 	// Default task is the server
@@ -154,6 +163,10 @@ module.exports = function(grunt) {
 		'watch'
 	]);
 
+	// Karma configuration
+	grunt.registerTask('test', ['karma']);
+
+	// Build aplication
 	grunt.registerTask('build', [
 		'clean',
 		'compass:build',
