@@ -1,9 +1,16 @@
 language: node_js
-
 node_js:
-  - '0.10'
+  - 0.10
 
 before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'npm install karma'
-  - 'bower install'
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install -g bower grunt-cli
+  - npm install --quiet -g karma
+  - bower install
+  - ./server/server.js > /dev/null &
+  - sleep 1 # give server time to start
+
+script:
+  - karma start config/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
+
