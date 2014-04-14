@@ -51,6 +51,11 @@ app.factory('countryService', ['$http', '$q', function($http, $q) {
 					data.error = 'Country "' + query.code + '" was not found.';
 				}
 				return data;
+			},
+			function(data) {
+				data = query;
+				data.error = data.error || 'There was a problem getting a data.';
+				return data;
 			});
 		}
 
