@@ -27,22 +27,25 @@
 				<div class="tab-content tab-vf" ng-class="{active: tab == 'vf'}">
 					<ul class="list-unstyled">
 						<li ng-repeat="c in country.vf">
-							<a class="country">{{c.name}}</a>
+							<a class="country" href="/from/{{country.code}}/to/{{c.code}}">{{c.name}}</a>
 						</li>
+						<li ng-hide="country.vf.length">No countries here.</li>
 					</ul>
 				</div>
 				<div class="tab-content tab-va" ng-class="{active: tab == 'va'}">
 					<ul class="list-unstyled">
 						<li ng-repeat="c in country.va">
-							<a class="country">{{c.name}}</a>
+							<a class="country" href="/from/{{country.code}}/to/{{c.code}}">{{c.name}}</a>
 						</li>
+						<li ng-hide="country.va.length">No countries here.</li>
 					</ul>
 				</div>
 				<div class="tab-content tab-vr" ng-class="{active: tab == 'vr'}">
 					<ul class="list-unstyled">
 						<li ng-repeat="c in country.vr">
-							<a class="country">{{c.name}}</a>
+							<a class="country" href="/from/{{country.code}}/to/{{c.code}}">{{c.name}}</a>
 						</li>
+						<li ng-hide="country.vr.length">No countries here.</li>
 					</ul>
 				</div>
 			</div>
