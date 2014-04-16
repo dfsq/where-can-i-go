@@ -12,8 +12,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 			controller: 'infoScreenController'
 		})
 		.when('/from/:fromCountryCode/to/:toCountryCode', {
-			template: 'from to country',
-			controller: 'requirementsController'
+			templateUrl: '/views/requirementsInfo.html',
+			controller: 'requirementsInfoController'
 		})
 		.otherwise({
 			redirectTo: '/'

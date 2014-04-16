@@ -58,17 +58,29 @@ noscript {
 	}
 }
 
-
-.info-screen {
+// All ng-view pages
+.view-container > div {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: -100%;
 	width: 300px;
 	background-color: rgba(255, 255, 255, .5);
-	color: #222;
 	padding: 0 10px;
+	color: #222;
 
+	.btn-icon {
+		position: absolute;
+		top: 5px;
+		right: 4px;
+		font-size: 30px;
+		line-height: 17px;
+		cursor: pointer;
+	}
+}
+
+// info screen
+.info-screen {
+	left: -100%;
 	-webkit-transition: left .4s ease;
 	transition: left .4s ease;
 
@@ -81,17 +93,6 @@ noscript {
 	&.show {
 		left: 0;
 	}
-
-	.close {
-		position: absolute;
-		top: 5px;
-		right: 4px;
-		font-size: 30px;
-		line-height: 17px;
-		cursor: pointer;
-	}
-
-	header {}
 
 	section {
 
@@ -139,5 +140,14 @@ noscript {
 				}
 			}
 		}
+	}
+}
+
+
+// Destination country screen
+.requirements-info {
+
+	.back {
+
 	}
 }
