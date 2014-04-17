@@ -1,6 +1,7 @@
 'use strict';
 
-app.controller('infoScreenController', ['$scope', '$rootScope', '$routeParams', 'countryService', function($scope, $rootScope, $routeParams, countryService) {
+app.controller('infoScreenController', ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'countryService',
+function($scope, $rootScope, $routeParams, $location, $timeout, countryService) {
 
 	$scope.infoShow = true;
 	$scope.loading = true;
@@ -10,6 +11,9 @@ app.controller('infoScreenController', ['$scope', '$rootScope', '$routeParams', 
 
 	$scope.close = function() {
 		$scope.infoShow = false;
+		$timeout(function() {
+			$location.path('/');
+		}, 400);
 	};
 
 	$scope.setTab = function(tab) {

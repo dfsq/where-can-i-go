@@ -6,6 +6,8 @@ describe('Controller: infoScreenController', function () {
 		$rootScope,
 		$scope,
 		$httpBackend,
+		$location,
+		$timeout,
 		routeParams;
 
 	// load the controller's module
@@ -19,6 +21,8 @@ describe('Controller: infoScreenController', function () {
 		};
 
 		$httpBackend = $injector.get('$httpBackend');
+		$location = $injector.get('$location');
+		$timeout = $injector.get('$timeout');
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
 
@@ -29,7 +33,8 @@ describe('Controller: infoScreenController', function () {
 
 		infoController = $controller('infoScreenController', {
 			$scope: $scope,
-			$routeParams: routeParams
+			$routeParams: routeParams,
+			$timeout: $timeout
 		});
 
 		// Apply initial scope state
@@ -53,6 +58,14 @@ describe('Controller: infoScreenController', function () {
 	it('should set property "loading" to "false" after request', function() {
 		$httpBackend.flush();
 		expect($scope.loading).toBeFalsy();
+	});
+
+	it('should change $location.path to "/" and $scope.infoShow to "false" on infoScreen close', function() {
+		$location.path('/from/BY');
+		$scope.close();
+		$timeout.flush();
+		expect($location.path()).toBe('/');
+		expect($scope.infoShow).toBeFalsy();
 	});
 
 });
