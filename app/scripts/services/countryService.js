@@ -3,7 +3,8 @@
 app.factory('countryService', ['$http', '$q', function($http, $q) {
 
 	// Store previously loaded data in cache
-	var requestCache = {};
+	var requestCache = {},
+		currentCountry = null;
 
 	return {
 		/**
@@ -34,7 +35,7 @@ app.factory('countryService', ['$http', '$q', function($http, $q) {
 			if (cacheData) {
 				var deferred = $q.defer();
 				deferred.resolve(cacheData);
-				console.log('from cache', cacheData);
+				currentCountry = cacheData;
 				return deferred.promise;
 			}
 
@@ -45,18 +46,29 @@ app.factory('countryService', ['$http', '$q', function($http, $q) {
 				if (response.data && typeof response.data === 'object') {
 					data = response.data;
 					self.setCache(query.code, response.data);
+					currentCountry = cacheData;
 				}
 				else {
 					data = query;
 					data.error = 'Country "' + query.code + '" was not found.';
+					currentCountry = null;
 				}
 				return data;
 			},
 			function(data) {
 				data = query;
 				data.error = data.error || 'There was a problem getting a data.';
+				currentCountry = null;
 				return data;
 			});
+		},
+
+		/**
+		 * Get the information about currently selected country.
+		 * @param countryCode {String}
+		 */
+		getCurrentCountry: function() {
+			return currentCountry;
 		}
 
 	};

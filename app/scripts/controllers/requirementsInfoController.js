@@ -6,14 +6,12 @@ app.controller('requirementsInfoController', ['$scope', '$routeParams', '$window
 		var from = $routeParams.fromCountryCode,
 			to   = $routeParams.toCountryCode;
 
-		$scope.country = {name: to};
-
-		window.scope = $rootScope;
-
-
 		$scope.back = function() {
 			$window.history.back();
 		};
 
+		countryService.from({code: from}).then(function(data) {
+			$rootScope.country = data;
+		});
 	}
 ]);
