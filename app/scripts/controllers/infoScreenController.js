@@ -7,7 +7,10 @@ function($scope, $rootScope, $routeParams, $location, $timeout, countryService) 
 	$scope.loading = true;
 	$scope.country = null;
 
-	$rootScope.tab = $scope.tab = 'vf';
+	// If comming from from/to screen $rootScope.tab will be already set
+	if (!$rootScope.tab) {
+		$rootScope.tab = $scope.tab = 'vf';
+	}
 
 	$scope.close = function() {
 		$scope.infoShow = false;

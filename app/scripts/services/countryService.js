@@ -71,6 +71,13 @@ app.factory('countryService', ['$http', '$q', function($http, $q) {
 		},
 
 		/**
+		 * Expose for testing purposes.
+		 */
+		setCurrentCountry: function(country) {
+			currentCountry = country;
+		},
+
+		/**
 		 * Find a country by key in vf, va, vr arrays.
 		 * @param code {String}
 		 */
