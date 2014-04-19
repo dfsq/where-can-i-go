@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: infoScreenController', function () {
+describe('Controller: infoScreenController', function() {
 
 	var infoController,
 		$rootScope,
