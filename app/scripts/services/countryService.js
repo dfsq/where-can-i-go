@@ -20,6 +20,7 @@ app.factory('countryService', ['$http', '$q', function($http, $q) {
 		 */
 		setCache: function(key, data) {
 			requestCache[key] = data;
+			return data;
 		},
 
 		/**
@@ -45,8 +46,7 @@ app.factory('countryService', ['$http', '$q', function($http, $q) {
 				var data;
 				if (response.data && typeof response.data === 'object') {
 					data = response.data;
-					self.setCache(query.code, response.data);
-					currentCountry = cacheData;
+					currentCountry = self.setCache(query.code, response.data);
 				}
 				else {
 					data = query;
@@ -65,10 +65,31 @@ app.factory('countryService', ['$http', '$q', function($http, $q) {
 
 		/**
 		 * Get the information about currently selected country.
-		 * @param countryCode {String}
 		 */
 		getCurrentCountry: function() {
 			return currentCountry;
+		},
+
+		/**
+		 * Find a country by key in vf, va, vr arrays.
+		 * @param code {String}
+		 */
+		findByCode: function(code) {
+
+			var data = this.getCurrentCountry(),
+				key, i, obj;
+
+			for (key in data) {
+				for (i = 0; i < data[key].length; i++) {
+					if (data[key][i].code === code) {
+						obj = data[key][i];
+						obj.visaGroup = key;
+						return obj;
+					}
+				}
+			}
+
+			return null;
 		}
 
 	};

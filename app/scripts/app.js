@@ -13,7 +13,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 		})
 		.when('/from/:fromCountryCode/to/:toCountryCode', {
 			templateUrl: '/views/requirementsInfo.html',
-			controller: 'requirementsInfoController'
+			controller: 'requirementsInfoController',
+			resolve: {
+				fromCountry: ['$route', 'countryService', function($route, countryService) {
+					return countryService.from({code: $route.current.params.fromCountryCode});
+				}]
+			}
 		})
 		.otherwise({
 			redirectTo: '/'

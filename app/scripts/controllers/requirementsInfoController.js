@@ -1,17 +1,14 @@
 'use strict';
 
-app.controller('requirementsInfoController', ['$scope', '$routeParams', '$window', '$rootScope', 'countryService',
-	function($scope, $routeParams, $window, $rootScope, countryService) {
+app.controller('requirementsInfoController', [
+	'$scope', '$routeParams', '$window', 'countryService', 'fromCountry',
+	function($scope, $routeParams, $window, countryService, fromCountry) {
 
-		var from = $routeParams.fromCountryCode,
-			to   = $routeParams.toCountryCode;
+		$scope.fromCountry = fromCountry;
+		$scope.toCountry = countryService.findByCode($routeParams.toCountryCode);
 
 		$scope.back = function() {
 			$window.history.back();
 		};
-
-		countryService.from({code: from}).then(function(data) {
-			$rootScope.country = data;
-		});
 	}
 ]);
