@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('requirementsInfoController', [
-	'$scope', '$routeParams', '$window', '$rootScope', 'countryService', 'fromCountry',
-	function($scope, $routeParams, $window, $rootScope, countryService, fromCountry) {
+	'$scope', '$routeParams', '$location', '$rootScope', 'countryService', 'fromCountry',
+	function($scope, $routeParams, $location, $rootScope, countryService, fromCountry) {
 
 		var toCountry = countryService.findByCode($routeParams.toCountryCode);
 
@@ -14,7 +14,7 @@ app.controller('requirementsInfoController', [
 		$rootScope.tab = toCountry.visaGroup;
 
 		$scope.back = function() {
-			$window.history.back();
+			$location.path('/from/' + $routeParams.fromCountryCode);
 		};
 	}
 ]);

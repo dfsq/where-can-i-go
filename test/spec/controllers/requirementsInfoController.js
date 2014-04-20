@@ -4,6 +4,7 @@ describe('Controller: requirementsInfoController', function() {
 
 	var requirementsController,
 		$rootScope,
+		$location,
 		$routeParams,
 		countryService,
 		fromCountry,
@@ -16,6 +17,7 @@ describe('Controller: requirementsInfoController', function() {
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
 		countryService = $injector.get('countryService');
+		$location = $injector.get('$location');
 		$routeParams = {
 			fromCountryCode: 'BY',
 			toCountryCode: 'US'
@@ -46,6 +48,12 @@ describe('Controller: requirementsInfoController', function() {
 		expect($scope.toCountry.code).toEqual('US');
 		expect($rootScope.country).toEqual(fromCountry);
 		expect($rootScope.tab).toBe('vr');
+	});
+	
+	it('should bring back to correct fromCountry screen on Back button click', function() {
+		$location.path('/from/' + $routeParams.fromCountryCode + '/to/' + $routeParams.toCountryCode);
+		$scope.back();
+		expect($location.path()).toBe('/from/' + $routeParams.fromCountryCode);
 	});
 
 });

@@ -134,8 +134,9 @@ noscript {
 					color: #222;
 					display: inline-block;
 
-					&:hover {
+					&:hover, &.selected {
 						color: brown;
+						text-decoration: underline;
 					}
 				}
 			}
