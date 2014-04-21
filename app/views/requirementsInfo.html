@@ -5,12 +5,26 @@
 
 	<!-- Destination country information -->
 	<header>
-		<h4>{{toCountry.name}}</h4>
+		<h3>{{toCountry.name}}</h3>
 		<p>Trip from {{fromCountry.name}} to {{toCountry.name}}.</p>
 	</header>
 
 	<section>
-		Visa: <b>{{toCountry.visaGroup}}</b>.
+
+		<div class="info" ng-if="toCountry.info">
+			<h4>{{toCountry.info.title}}</h4>
+			<p>{{toCountry.info.details}}</p>
+		</div>
+
+		<div class="visa" ng-if="toCountry.visa">
+			<div ng-repeat="visaInfo in toCountry.visa">
+				<h4>{{visaInfo.title}}</h4>
+				<ul>
+					<li ng-repeat="item in visaInfo.details">{{item}}</li>
+				</ul>
+			</div>
+		</div>
+
 	</section>
 
 </div>
