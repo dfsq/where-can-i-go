@@ -59,28 +59,12 @@ noscript {
 }
 
 // All ng-view pages
-.view-container > div {
+.view-container {
+
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	width: 300px;
-	background-color: rgba(255, 255, 255, .5);
-	padding: 0 10px;
-	color: #222;
-	overflow-y: auto;
-
-	.btn-icon {
-		position: absolute;
-		top: 5px;
-		right: 4px;
-		font-size: 30px;
-		line-height: 17px;
-		cursor: pointer;
-	}
-}
-
-// info screen
-.info-screen {
 	left: -100%;
 	-webkit-transition: left .4s ease;
 	transition: left .4s ease;
@@ -94,6 +78,30 @@ noscript {
 	&.show {
 		left: 0;
 	}
+
+	> div {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		background-color: rgba(255, 255, 255, .5);
+		padding: 0 10px;
+		color: #222;
+		overflow-y: auto;
+
+		.btn-icon {
+			position: absolute;
+			top: 5px;
+			right: 4px;
+			font-size: 30px;
+			line-height: 17px;
+			cursor: pointer;
+		}
+	}
+}
+
+// info screen
+.info-screen {
 
 	section {
 
