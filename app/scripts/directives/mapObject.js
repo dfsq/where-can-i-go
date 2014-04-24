@@ -22,10 +22,24 @@ app.directive('mapObject', ['countryService', '$rootScope', '$timeout', function
 					clearPath(oldParts[1]);
 				}
 
-				// Highlight new
-				highlight($rootScope.country, $rootScope.tab);
+				if ($rootScope.toCountryCode) {
+					// Highlight only one destination country
+					setClass($rootScope.toCountryCode, $rootScope.tab);
+				}
+				else {
+					// Highlight a set of countries
+					highlight($rootScope.country, $rootScope.tab);
+				}
 			}
 		});
+
+		// Listen select new country
+//		$rootScope.$watch('toCountryCode', function(newVal, oldVal) {
+//			if (newVal !== oldVal) {
+//				console.log('toCountryCode chaged', newVal, oldVal);
+//				setClass(newVal, $rootScope.tab);
+//			}
+//		});
 
 		/**
 		 * Live NodeList collections.

@@ -6,6 +6,7 @@ function($scope, $rootScope, $routeParams, $location, $timeout, countryService) 
 //	$scope.infoShow = true;
 //	$scope.loading = true;
 	$scope.country = null;
+	$rootScope.toCountry = null;
 
 	// If comming from from/to screen $rootScope.tab will be already set
 	if (!$rootScope.tab) {

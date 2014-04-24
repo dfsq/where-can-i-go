@@ -11,6 +11,7 @@ app.controller('requirementsInfoController', [
 
 		// Set rootScope object in order to trigger watcher in mapObject directive
 		$rootScope.country = fromCountry;
+		$rootScope.toCountry = toCountry;
 		$rootScope.tab = toCountry.visaGroup;
 		$rootScope.loading = false;
 
