@@ -132,9 +132,14 @@ module.exports = function(grunt) {
 
 		// Test settings
 		karma: {
-			unit: {
-				configFile: 'karma.conf.js',
+			options: {
 				autoWatch: false
+			},
+			unit: {
+				configFile: 'karma.conf.js'
+			},
+			dist: {
+				configFile: 'karma.dist.conf.js'
 			}
 		}
 	});
@@ -164,7 +169,7 @@ module.exports = function(grunt) {
 	]);
 
 	// Karma configuration
-	grunt.registerTask('test', ['karma']);
+	grunt.registerTask('test', ['karma', 'karma']);
 
 	// Build aplication
 	grunt.registerTask('build', [
@@ -174,6 +179,7 @@ module.exports = function(grunt) {
 		'copy:build',
 		'uglify',
 		'clean:post',
-		'usemin'
+		'usemin',
+		'karma:dist'
 	]);
 };
