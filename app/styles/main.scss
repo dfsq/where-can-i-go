@@ -168,7 +168,15 @@ noscript {
 // Destination country screen
 .requirements-info {
 
-	.back {
+	.back {}
 
+	&.entrance-vf::-webkit-scrollbar-thumb {
+		background: #68AF46;
+	}
+	&.entrance-va::-webkit-scrollbar-thumb {
+		background: #97AF9F;
+	}
+	&.entrance-vr::-webkit-scrollbar-thumb {
+		background: #FF3F3A;
 	}
 }
