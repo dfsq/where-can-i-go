@@ -27,9 +27,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 	$locationProvider.html5Mode(true);
 }]);
 
-app.run(function($rootScope) {
+app.run(['$rootScope', function($rootScope) {
 	$rootScope.$on('$routeChangeStart', function() {
 		$rootScope.infoShow = true;
 		$rootScope.loading  = true;
 	});
-});
+}]);

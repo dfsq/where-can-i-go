@@ -162,14 +162,14 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['server']);
 
 	// Register tasks
-	grunt.registerTask('server', [
+	grunt.registerTask('serve', [
 		'express',
 		'concurrent:server',
 		'watch'
 	]);
 
 	// Karma configuration
-	grunt.registerTask('test', ['karma', 'karma']);
+	grunt.registerTask('test', ['karma:unit']);
 
 	// Build aplication
 	grunt.registerTask('build', [
