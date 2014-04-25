@@ -136,10 +136,10 @@ module.exports = function(grunt) {
 				autoWatch: false
 			},
 			unit: {
-				configFile: 'karma.conf.js'
+				configFile: 'test/karma.conf.js'
 			},
 			dist: {
-				configFile: 'karma.dist.conf.js'
+				configFile: 'test/karma.dist.conf.js'
 			}
 		}
 	});

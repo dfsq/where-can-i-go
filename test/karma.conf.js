@@ -1,10 +1,11 @@
+'use strict';
+
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
-
 module.exports = function (config) {
 	config.set({
 		// base path, that will be used to resolve files and exclude
-		basePath: '',
+		basePath: '../',
 
 		// testing framework to use (jasmine/mocha/qunit/...)
 		frameworks: ['jasmine'],
