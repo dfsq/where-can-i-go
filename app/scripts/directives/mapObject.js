@@ -14,32 +14,33 @@ app.directive('mapObject', ['countryService', '$rootScope', '$timeout', function
 		function(newVal, oldVal) {
 			if (newVal !== oldVal) {
 
-				console.log('country|tab changed', newVal, oldVal);
-
 				// Clear previous hightlights
 				if (oldVal) {
 					var oldParts = oldVal.split('|');
 					clearPath(oldParts[1]);
 				}
 
-				if ($rootScope.toCountryCode) {
-					// Highlight only one destination country
-					setClass($rootScope.toCountryCode, $rootScope.tab);
-				}
-				else {
-					// Highlight a set of countries
-					highlight($rootScope.country, $rootScope.tab);
-				}
+				// Highlight a set of countries
+				highlight($rootScope.country, $rootScope.tab);
 			}
 		});
 
-		// Listen select new country
-//		$rootScope.$watch('toCountryCode', function(newVal, oldVal) {
-//			if (newVal !== oldVal) {
-//				console.log('toCountryCode chaged', newVal, oldVal);
-//				setClass(newVal, $rootScope.tab);
-//			}
-//		});
+		// Listen destrination country change
+		$rootScope.$watch(function() {
+			return $rootScope.toCountry && $rootScope.toCountry.code;
+		},
+		function(newVal, oldVal) {
+
+			// Clear all tab countries highlights
+			clearPath($rootScope.tab);
+
+			if (newVal && newVal !== oldVal) {
+				setClass(newVal, $rootScope.tab);
+			}
+			else if ($rootScope.country) {
+				highlight($rootScope.country, $rootScope.tab);
+			}
+		});
 
 		/**
 		 * Live NodeList collections.

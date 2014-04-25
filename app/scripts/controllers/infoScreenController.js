@@ -3,8 +3,6 @@
 app.controller('infoScreenController', ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'countryService',
 function($scope, $rootScope, $routeParams, $location, $timeout, countryService) {
 
-//	$scope.infoShow = true;
-//	$scope.loading = true;
 	$scope.country = null;
 	$rootScope.toCountry = null;
 
@@ -14,7 +12,6 @@ function($scope, $rootScope, $routeParams, $location, $timeout, countryService) 
 	}
 
 	$scope.close = function() {
-//		$scope.infoShow = false;
 		$timeout(function() {
 			$location.path('/');
 		}, 400);
@@ -28,6 +25,7 @@ function($scope, $rootScope, $routeParams, $location, $timeout, countryService) 
 	// Load actual data
 	countryService.from({code: $routeParams.countryCode}).then(function(country) {
 		$rootScope.country = $scope.country = country;
+		$rootScope.toCountry = null;
 		$rootScope.loading = false;
 	});
 }]);

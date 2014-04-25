@@ -29,7 +29,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 app.run(function($rootScope) {
 	$rootScope.$on('$routeChangeStart', function() {
-		console.log('$routeChangeStart');
 		$rootScope.infoShow = true;
 		$rootScope.loading  = true;
 	});

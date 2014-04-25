@@ -43,7 +43,8 @@ describe('Controller: infoScreenController', function() {
 
 
 	it('should set property "loading" to "true" before request', function() {
-		expect($scope.loading).toBeTruthy();
+		$rootScope.$broadcast('$routeChangeStart');
+		expect($rootScope.loading).toBeTruthy();
 	});
 
 	it('should load data for country defined by routeParams.countryCode', function() {
@@ -57,7 +58,7 @@ describe('Controller: infoScreenController', function() {
 
 	it('should set property "loading" to "false" after request', function() {
 		$httpBackend.flush();
-		expect($scope.loading).toBeFalsy();
+		expect($rootScope.loading).toBeFalsy();
 	});
 
 	it('should change $location.path to "/" and $scope.infoShow to "false" on infoScreen close', function() {
