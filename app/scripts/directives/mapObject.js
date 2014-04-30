@@ -25,14 +25,16 @@ app.directive('mapObject', ['countryService', '$rootScope', '$timeout', function
 			}
 		});
 
-		// Listen destrination country change
+		// Listen destination country change
 		$rootScope.$watch(function() {
 			return $rootScope.toCountry && $rootScope.toCountry.code;
 		},
 		function(newVal, oldVal) {
 
-			// Clear all tab countries highlights
-			clearPath($rootScope.tab);
+			// Clear all tab countries highlights if needed
+			if ($rootScope.tab) {
+				clearPath($rootScope.tab);
+			}
 
 			if (newVal && newVal !== oldVal) {
 				setClass(newVal, $rootScope.tab);
