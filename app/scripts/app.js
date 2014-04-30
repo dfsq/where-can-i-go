@@ -9,7 +9,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 	$routeProvider
 		.when('/from/:countryCode', {
 			templateUrl: '/views/infoScreen.html',
-			controller: 'infoScreenController'
+			controller: 'infoScreenController',
+			className: 'slide'
 		})
 		.when('/from/:fromCountryCode/to/:toCountryCode', {
 			templateUrl: '/views/requirementsInfo.html',
@@ -18,7 +19,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 				fromCountry: ['$route', 'countryService', function($route, countryService) {
 					return countryService.from({code: $route.current.params.fromCountryCode});
 				}]
-			}
+			},
+			className: 'slide'
+		})
+		.when('/about', {
+			controller: 'aboutController',
+			templateUrl: 'views/about.html',
+			className: 'popup'
 		})
 		.otherwise({
 			redirectTo: '/'
@@ -27,8 +34,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 	$locationProvider.html5Mode(true);
 }]);
 
-app.run(['$rootScope', function($rootScope) {
-	$rootScope.$on('$routeChangeStart', function() {
+app.run(['$rootScope', '$route', function($rootScope, $route) {
+
+	// TODO: Move infoShow and loading to controllers, about page doesn't need it
+	$rootScope.$on('$routeChangeStart', function(scope, next) {
+
+		// Route definition className determines animation ngView type
+		$rootScope.showEffect = next.className;
+
 		$rootScope.infoShow = true;
 		$rootScope.loading  = true;
 	});
