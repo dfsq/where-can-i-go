@@ -3,6 +3,7 @@
 describe('Controller: infoScreenController', function() {
 
 	var infoController,
+		$controller,
 		$rootScope,
 		$scope,
 		$httpBackend,
@@ -14,16 +15,17 @@ describe('Controller: infoScreenController', function() {
 	beforeEach(module('whereCanIGo'));
 
 	// Initialize the controller and a mock scope
-	beforeEach(inject(function($controller, _$rootScope_, $injector) {
+	beforeEach(inject(function($injector) {
 
 		routeParams = {
 			countryCode: 'BY'
 		};
 
+		$controller = $injector.get('$controller');
 		$httpBackend = $injector.get('$httpBackend');
 		$location = $injector.get('$location');
 		$timeout = $injector.get('$timeout');
-		$rootScope = _$rootScope_;
+		$rootScope = $injector.get('$rootScope');
 		$scope = $rootScope.$new();
 
 		// Set up mock http
@@ -43,7 +45,7 @@ describe('Controller: infoScreenController', function() {
 
 
 	it('should set property "loading" to "true" before request', function() {
-		$rootScope.$broadcast('$routeChangeStart');
+		$rootScope.$broadcast('$routeChangeStart', {}, {className: 'xxx'});
 		expect($rootScope.loading).toBeTruthy();
 	});
 
@@ -66,7 +68,6 @@ describe('Controller: infoScreenController', function() {
 		$scope.close();
 		$timeout.flush();
 		expect($location.path()).toBe('/');
-		expect($scope.infoShow).toBeFalsy();
 	});
 
 });

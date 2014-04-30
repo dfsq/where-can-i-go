@@ -34,7 +34,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 	$locationProvider.html5Mode(true);
 }]);
 
-app.run(['$rootScope', '$route', function($rootScope, $route) {
+app.run(['$rootScope', '$route', function($rootScope) {
 
 	// TODO: Move infoShow and loading to controllers, about page doesn't need it
 	$rootScope.$on('$routeChangeStart', function(scope, next) {
@@ -42,6 +42,7 @@ app.run(['$rootScope', '$route', function($rootScope, $route) {
 		// Route definition className determines animation ngView type
 		$rootScope.showEffect = next.className;
 
+		// TODO: infoShow is not needed, remove it, use animate service?
 		$rootScope.infoShow = true;
 		$rootScope.loading  = true;
 	});
