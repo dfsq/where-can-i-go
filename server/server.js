@@ -1,8 +1,9 @@
+'use strict';
+
 /**
  * Simple Express server for the application.
  */
 var express = require('express'),
-	path = require('path'),
 	config = require('./config'),
 	site = require('./routes/site'),
 	api = require('./routes/api'),

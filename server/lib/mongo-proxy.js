@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Proxy layer for MongoLab database.
  */
@@ -25,7 +27,7 @@ module.exports = function(collection, params, req, res) {
 
 		var request = https.request(options, function(requestRes) {
 
-			var data = "";
+			var data = '';
 
 			res.headers = requestRes.headers;
 			requestRes.setEncoding('utf8');

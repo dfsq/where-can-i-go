@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Route for the main index.html path.
  * @param req

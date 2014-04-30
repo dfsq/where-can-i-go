@@ -1,9 +1,10 @@
+'use strict';
+
 /**
  * API routes.
  */
 
-var mongoProxy = require('../lib/mongo-proxy'),
-	config = require('../config');
+var mongoProxy = require('../lib/mongo-proxy');
 
 /**
  * From country information.
