@@ -2,11 +2,16 @@
 
 /* global app: true */
 var app = angular.module('whereCanIGo', [
-	'ngRoute'
+	'ngRoute',
+	'ngAnimate'
 ]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider
+		.when('/', {
+			controller: function() {},
+			template: ''
+		})
 		.when('/from/:countryCode', {
 			templateUrl: '/views/infoScreen.html',
 			controller: 'infoScreenController',
@@ -25,7 +30,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 		.when('/about', {
 			controller: 'aboutController',
 			templateUrl: 'views/about.html',
-			className: 'popup'
+			className: 'fade'
 		})
 		.otherwise({
 			redirectTo: '/'

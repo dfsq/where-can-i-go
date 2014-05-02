@@ -77,28 +77,39 @@ noscript {
 	bottom: 0;
 	z-index: 10;
 
+	// Info screen slide animation
 	&.slide {
 		width: 300px;
 		left: -100%;
 		-webkit-transition: left .4s ease;
 		transition: left .4s ease;
+
+		&.show {
+			left: 0;
+		}
 	}
 
-	&.popup {
+	// About page fade in animation
+	&.fade {
 		width: 100%;
 		left: 0;
-		opacity: 0;
+		opacity: 1;
 		background: rgba(0, 0, 0, .9);
 		-webkit-transition: opacity 4s ease;
 		transition: opacity .4s ease;
-	}
 
-	&.slide.show {
-		left: 0;
-	}
-
-	&.popup.show {
-		opacity: 1;
+		&.ng-enter {
+			opacity: 0;
+		}
+		&.ng-enter-active {
+			opacity: 1;
+		}
+		&.ng-leave {
+			opacity: 1;
+		}
+		&.ng-leave-active {
+			opacity: 0;
+		}
 	}
 
 	&.loading {
