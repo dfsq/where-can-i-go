@@ -44,9 +44,9 @@ describe('Controller: infoScreenController', function() {
 	}));
 
 
-	it('should set property "loading" to "true" before request', function() {
-		$rootScope.$broadcast('$routeChangeStart', {}, {className: 'xxx'});
-		expect($rootScope.loading).toBeTruthy();
+	it('should set property "loading" to "true" before request for "slide" screens', function() {
+		$rootScope.$broadcast('$routeChangeStart', {className: 'slide'});
+		expect($rootScope.loading).toBe(true);
 	});
 
 	it('should load data for country defined by routeParams.countryCode', function() {
