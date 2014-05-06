@@ -236,3 +236,16 @@ noscript {
 		}
 	}
 }
+
+.view-container .about-screen {
+
+	color: #AAA;
+	width: 50%;
+	background: none;
+	position: static;
+	margin: 0 auto;
+
+	.title {
+		color: #AA0000;
+	}
+}
